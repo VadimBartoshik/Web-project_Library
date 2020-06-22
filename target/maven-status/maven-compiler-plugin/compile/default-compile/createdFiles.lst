@@ -1,0 +1,8 @@
+by\epam\javaweb\bartoshik\library\connection\ConnectionCreator.class
+by\epam\javaweb\bartoshik\library\connection\Runner.class
+by\epam\javaweb\bartoshik\library\controller\LoginController.class
+by\epam\javaweb\bartoshik\library\dao\RegisterDao.class
+by\epam\javaweb\bartoshik\library\entity\LoginBean.class
+by\epam\javaweb\bartoshik\library\entity\RegisterBean.class
+by\epam\javaweb\bartoshik\library\dao\LoginDao.class
+by\epam\javaweb\bartoshik\library\controller\RegisterController.class
