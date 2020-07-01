@@ -1,0 +1,85 @@
+
+
+
+
+body{
+    background-color: #3498db;
+}
+
+.presentBook-form{
+    width: 300px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: #191919;
+    text-align: center;
+}
+
+.form-register h1{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.form-register input[type="text"],.form-register input[type="password"]{
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 10px;
+    width: 200px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+}
+
+
+
+.form-register input[type="text"]:focus,.form-register input[type="password"]:focus{
+    width: 280px;
+    border-color: #66cdfc;
+}
+
+.form-register input[type="submit"]{
+    background: none;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 40px;
+    outline: none;
+    color: white;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+}
+
+.form-register input[type="submit"]:hover{
+    color: #0d4375;
+    background: #1f8bf0;
+    box-shadow: 0 0 10px #1f8bf0, 0 0 40px #1f8bf0, 0 0 80px #1f8bf0;
+    border: 2px solid #1f8bf0;
+}
+
+a.form-log-in-with-existing{
+    color: #66cdfc;
+}
+a.form-log-in-with-existing:hover{
+    color: #0d4375;
+    background: #9edcf9;
+    box-shadow: 0 0 10px #9edcf9, 0 0 40px #9edcf9, 0 0 80px #9edcf9;
+}
+
+p{
+    position: absolute;
+    display: block;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
