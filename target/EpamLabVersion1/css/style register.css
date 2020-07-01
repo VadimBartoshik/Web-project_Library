@@ -1,5 +1,5 @@
 body{
-    background-color: #3498db;
+    background-color: #04052b;
 }
 
 .form-register{
@@ -20,7 +20,6 @@ body{
 }
 
 .form-register input[type="text"],.form-register input[type="password"]{
-    border: 0;
     background: none;
     display: block;
     margin: 20px auto;
@@ -34,18 +33,19 @@ body{
     transition: 0.25s;
 }
 
+
+
 .form-register input[type="text"]:focus,.form-register input[type="password"]:focus{
     width: 280px;
-    border-color: #2ecc71;
+    border-color: #66cdfc;
 }
 
 .form-register input[type="submit"]{
-    border: 0;
     background: none;
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #2ecc71;
+    border: 2px solid #3498db;
     padding: 14px 40px;
     outline: none;
     color: white;
@@ -55,12 +55,26 @@ body{
 }
 
 .form-register input[type="submit"]:hover{
-    background: #2ecc71;
+    color: #0d4375;
+    background: #1f8bf0;
+    box-shadow: 0 0 10px #1f8bf0, 0 0 40px #1f8bf0, 0 0 80px #1f8bf0;
+    border: 2px solid #1f8bf0;
 }
-.form-log-in-with-existing text{
-    text-decoration: none;
-    padding: 15px 45px;
-    font-weight: normal;
-    color: red;
-    background-color: #d6f0c3;
+p{
+    position: absolute;
+    display: block;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+a.form-log-in-with-existing{
+    color: #66cdfc;
+}
+a.form-log-in-with-existing:hover{
+    color: #0d4375;
+    background: #9edcf9;
+    box-shadow: 0 0 10px #9edcf9, 0 0 40px #9edcf9, 0 0 80px #9edcf9;
 }

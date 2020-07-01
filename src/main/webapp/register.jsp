@@ -11,9 +11,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 		
 	<title>Register : onlyxscript.blogspot.com</title>
-
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/login-register.css">
 	
 	<!-- javascript for registeration form validation-->
 	<script>	
@@ -29,7 +26,10 @@
             var lname = document.getElementById("lname"); //textbox id lname
             var email = document.getElementById("email"); //textbox id email
             var password = document.getElementById("password"); //textbox id password
-			
+			fname.style.background='none';
+			lname.style.background='none';
+			email.style.background='none';
+			password.style.background='none';
 			if(!first_name.test(fname.value) || fname.value=='') 
             {
 				alert("Enter Firstname Alphabet Only....!");
@@ -66,7 +66,7 @@
 
 <body>
     <div class="main-content">
-
+        <p><img src="image/registerImage.jpg" alt="register"></p>
         <form class="form-register" method="post" action="RegisterController" onsubmit="return validate();">
 
             <h1>Register</h1>
@@ -82,8 +82,6 @@
 		    <input type="submit" name="btn_register" value="Register">
 				
             <a href="index.jsp" class="form-log-in-with-existing">Already have an account? <b> Login here </b></a>
-
-            </div>
 
         </form>
 

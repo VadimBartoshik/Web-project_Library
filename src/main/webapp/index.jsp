@@ -9,6 +9,10 @@
       <link rel="stylesheet" href="style login.css">
   </head>
       <body>
+      <center>
+          <p><img src="image/loginImage.jpg" alt="loginImage"></p>
+      </center>
+
             <form class="form-register" method="post" action="LoginController" name="LoginForm" onsubmit="return validate();">
 
                 <h1>Log In</h1>
