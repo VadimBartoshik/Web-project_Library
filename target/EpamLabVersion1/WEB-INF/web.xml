@@ -24,7 +24,14 @@
     <url-pattern>/RegisterController</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>PresentBookServlet</servlet-name>
+    <servlet-class>by.epam.javaweb.bartoshik.library.controller.PresentBookController</servlet-class>
+  </servlet>
 
-
+  <servlet-mapping>
+    <servlet-name>PresentBookServlet</servlet-name>
+    <url-pattern>/PresentBookController</url-pattern>
+  </servlet-mapping>
 
 </web-app>

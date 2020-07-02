@@ -1,8 +1,11 @@
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\connection\ConnectionCreator.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\connection\Runner.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\RegisterController.java
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\PresentBookController.java
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\entity\AddBean.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\dao\RegisterDao.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\entity\RegisterBean.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\dao\LoginDao.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\LoginController.java
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\dao\AddDao.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\entity\LoginBean.java

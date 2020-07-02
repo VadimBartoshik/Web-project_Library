@@ -14,16 +14,19 @@ body{
     left: 50%;
     transform: translate(-50%,-50%);
     background: #191919;
+    opacity: 0.7;
+    filter: alpha(Opacity=70);
     text-align: center;
+    color :#FFFFFF;
 }
 
-.form-register h1{
+.presentBook-form h1{
     color: white;
     text-transform: uppercase;
     font-weight: 500;
 }
 
-.form-register input[type="text"],.form-register input[type="password"]{
+.presentBook-form input[type="text"],.presentBook-form input[type="password"]{
     background: none;
     display: block;
     margin: 20px auto;
@@ -39,12 +42,12 @@ body{
 
 
 
-.form-register input[type="text"]:focus,.form-register input[type="password"]:focus{
+.presentBook-form input[type="text"]:focus,.presentBook-form input[type="password"]:focus{
     width: 280px;
     border-color: #66cdfc;
 }
 
-.form-register input[type="submit"]{
+.presentBook-form input[type="submit"]{
     background: none;
     display: block;
     margin: 20px auto;
@@ -58,17 +61,17 @@ body{
     cursor: pointer;
 }
 
-.form-register input[type="submit"]:hover{
+.presentBook-form input[type="submit"]:hover{
     color: #0d4375;
     background: #1f8bf0;
     box-shadow: 0 0 10px #1f8bf0, 0 0 40px #1f8bf0, 0 0 80px #1f8bf0;
     border: 2px solid #1f8bf0;
 }
 
-a.form-log-in-with-existing{
+a.back{
     color: #66cdfc;
 }
-a.form-log-in-with-existing:hover{
+a.back:hover{
     color: #0d4375;
     background: #9edcf9;
     box-shadow: 0 0 10px #9edcf9, 0 0 40px #9edcf9, 0 0 80px #9edcf9;

@@ -19,6 +19,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         if (request.getParameter("btn_login") != null) {
             String email = request.getParameter("txt_email");
             String password = request.getParameter("txt_password");

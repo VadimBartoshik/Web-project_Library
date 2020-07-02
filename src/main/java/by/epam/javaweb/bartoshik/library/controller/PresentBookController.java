@@ -2,16 +2,23 @@ package by.epam.javaweb.bartoshik.library.controller;
 
 import by.epam.javaweb.bartoshik.library.dao.AddDao;
 import by.epam.javaweb.bartoshik.library.entity.AddBean;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AddController {
+public class PresentBookController extends HttpServlet {
+    public static Logger logger = LogManager.getRootLogger();
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         if (request.getParameter("btn_add") != null) //check button click event not null from add.jsp page after continue
         {
             String title = request.getParameter("txt_title");
@@ -25,7 +32,7 @@ public class AddController {
             AddDao addDao = new AddDao();
 
             String insertValidate = addDao.checkInsert(addBean);
-
+            logger.info(insertValidate);
             if (insertValidate.equals("INSERT SUCCESS")) //check calling checkInsert() function receive string "INSERT SUCCESS" after redirect to index.jsp page and display record
             {
                 request.setAttribute("InsertSuccessMsg", insertValidate); //setAttribute value is "InsertSuccessMsg" for insert successfully message
