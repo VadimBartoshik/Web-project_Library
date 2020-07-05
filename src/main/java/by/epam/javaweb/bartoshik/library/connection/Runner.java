@@ -9,7 +9,7 @@ public class Runner {
     public static void main(String[] args) {
         try {
 
-            buyBook(ConnectionCreator.getConnection(),8);
+            returnBook(ConnectionCreator.getConnection(),1);
             System.out.println("Connection to Store DB success full!");
 
         } catch (Exception ex) {
@@ -29,7 +29,7 @@ public class Runner {
 
     public static void printAllFreeBook(Connection connection) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT id, title, author FROM book WHERE user is null;");
+        ResultSet resultSet = statement.executeQuery("SELECT id, title, author FROM book WHERE userId is null;");
         while (resultSet.next()) {
             System.out.println(resultSet.getString(1) + "  " +
                     resultSet.getString(2) + "  " + resultSet.getString(3));
@@ -38,12 +38,12 @@ public class Runner {
 
     public static void takeBook(Connection connection, int userId, int bookId) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("UPDATE book SET user = " + userId + " WHERE id = " + bookId + ";");
+        statement.execute("UPDATE book SET userId = " + userId + " WHERE id = " + bookId + ";");
     }
 
     public static void printAllBookOfUser(Connection connection, int userId) throws SQLException {
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT id, title, author FROM book WHERE user =" + userId + ";");
+        ResultSet resultSet = statement.executeQuery("SELECT id, title, author FROM book WHERE userId =" + userId + ";");
         while (resultSet.next()) {
             System.out.println(resultSet.getString(1) + "  " +
                     resultSet.getString(2) + "  " + resultSet.getString(3));
@@ -52,7 +52,7 @@ public class Runner {
 
     public static void returnBook(Connection connection, int bookId) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("UPDATE book SET user = null WHERE id = " + bookId + ";");
+        statement.execute("UPDATE book SET userId = null WHERE id = " + bookId + ";");
     }
 
     public static void presentBook(Connection connection, String title, String author) throws SQLException {
@@ -64,8 +64,4 @@ public class Runner {
         Statement statement = connection.createStatement();
         statement.execute("DELETE FROM book WHERE id = "+bookId+";");
     }
-
-
-
-
 }
