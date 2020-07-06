@@ -1,11 +1,14 @@
 by\epam\javaweb\bartoshik\library\connection\ConnectionCreator.class
-by\epam\javaweb\bartoshik\library\entity\AddBean.class
+by\epam\javaweb\bartoshik\library\dao\PresentDao.class
 by\epam\javaweb\bartoshik\library\connection\Runner.class
 by\epam\javaweb\bartoshik\library\controller\LoginController.class
 by\epam\javaweb\bartoshik\library\dao\RegisterDao.class
-by\epam\javaweb\bartoshik\library\controller\PresentBookController.class
+by\epam\javaweb\bartoshik\library\controller\BuyController.class
+by\epam\javaweb\bartoshik\library\entity\PresentBean.class
 by\epam\javaweb\bartoshik\library\entity\LoginBean.class
+by\epam\javaweb\bartoshik\library\entity\Book.class
 by\epam\javaweb\bartoshik\library\entity\RegisterBean.class
-by\epam\javaweb\bartoshik\library\dao\AddDao.class
 by\epam\javaweb\bartoshik\library\dao\LoginDao.class
+by\epam\javaweb\bartoshik\library\dao\BuyDao.class
+by\epam\javaweb\bartoshik\library\controller\PresentController.class
 by\epam\javaweb\bartoshik\library\controller\RegisterController.class
