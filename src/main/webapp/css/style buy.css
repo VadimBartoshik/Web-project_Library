@@ -1,0 +1,43 @@
+p{
+    position: absolute;
+    display: block;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+
+table {
+    position: relative;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 4px;}
+table thead tr {
+    color: #ffffff;
+    font-weight: bold;
+}
+table thead tr td {
+    border-radius: 4px 4px 0 0;
+    background: #747014;
+}
+table tbody tr td {
+    border: 1px solid #747014;
+    border-radius: 4px;
+    background: #edfa6c;
+}
+table tbody tr td:hover {
+    background: #cbd948;
+    transition-duration: 0.2s;
+}
+
+.buy_btn:hover {
+    color: #2d3205;
+    background: #d3e330;
+    box-shadow: 0 0 10px #d3e330, 0 0 40px #d3e330, 0 0 80px #d3e330;
+}
+a.back:hover{
+    color: #2d3205;
+    background: #d3e330;
+    box-shadow: 0 0 10px #d3e330, 0 0 40px #d3e330, 0 0 80px #d3e330;
+}

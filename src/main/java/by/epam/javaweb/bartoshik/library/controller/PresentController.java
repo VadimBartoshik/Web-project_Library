@@ -18,12 +18,14 @@ public class PresentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        logger.info("PresentController method started");
         request.setCharacterEncoding("UTF-8");
-        if (request.getParameter("btn_add") != null) //check button click event not null from add.jsp page after continue
+        if (request.getParameter("btn_present") != null) //check button click event not null from add.jsp page after continue
         {
             String title = request.getParameter("txt_title");
             String author = request.getParameter("txt_author");
-
+            logger.info(title);
+            logger.info(title);
             PresentBean presentBean = new PresentBean();
 
             presentBean.setTitle(title);

@@ -12,14 +12,14 @@
 </style>
 <div class="main">
     <p><img src="image/presentBookImage.jpg" alt="presentBook"></p>
-    <form class="presentBook-form" method="post" name="presentForm" action="PresentBookController" onsubmit="return validate();">
+    <form class="presentBook-form" method="post" name="presentForm" action="PresentController" onsubmit="return validate();">
 
             <h1>Present book</h1>
         <input type="text" name="txt_title" placeholder="enter title">
 
         <input type="text" name="txt_author" placeholder="enter author">
 
-        <input type="submit" name="btn_add" value="Present">
+        <input type="submit" name="btn_present" value="Present">
 
         <center>
             <h1><a class="back" href="welcome.jsp">Back</a></h1>
