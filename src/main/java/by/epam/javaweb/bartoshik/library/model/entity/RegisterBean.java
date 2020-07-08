@@ -1,4 +1,4 @@
-package by.epam.javaweb.bartoshik.library.entity;
+package by.epam.javaweb.bartoshik.library.model.entity;
 
 public class RegisterBean {
     private String firstName;

@@ -1,8 +1,7 @@
-package by.epam.javaweb.bartoshik.library.dao;
+package by.epam.javaweb.bartoshik.library.model;
 
 import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
-import by.epam.javaweb.bartoshik.library.entity.LoginBean;
-import com.mysql.cj.x.protobuf.MysqlxPrepare;
+import by.epam.javaweb.bartoshik.library.model.entity.LoginBean;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

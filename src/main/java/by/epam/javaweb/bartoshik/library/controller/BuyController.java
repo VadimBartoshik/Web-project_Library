@@ -1,9 +1,7 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
 import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
-import by.epam.javaweb.bartoshik.library.connection.Runner;
-import by.epam.javaweb.bartoshik.library.dao.BuyDao;
-import by.epam.javaweb.bartoshik.library.entity.Book;
+import by.epam.javaweb.bartoshik.library.model.BuyDao;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -13,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class BuyController extends HttpServlet {

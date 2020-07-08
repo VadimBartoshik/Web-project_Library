@@ -1,13 +1,21 @@
-package by.epam.javaweb.bartoshik.library.entity;
+package by.epam.javaweb.bartoshik.library.model.entity;
 
-public class Book {
+import by.epam.javaweb.bartoshik.library.model.dao.base.Identified;
+
+public class Book implements Identified<Integer> {
     private int id;
     private String title;
     private String author;
     private int userId;
 
-    public Book(){
+    public Book() {
+    }
 
+    public Book(int id, String title, String author) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.userId = userId;
     }
 
     public Book(int id, String title, String author, int userId) {
@@ -16,15 +24,9 @@ public class Book {
         this.author = author;
         this.userId = userId;
     }
-    public Book(int id, String title, String author) {
-        this.id = id;
-        this.title = title;
-        this.author = author;
-        this.userId = userId;
-    }
 
-
-    public int getId() {
+    @Override
+    public Integer getId() {
         return id;
     }
 

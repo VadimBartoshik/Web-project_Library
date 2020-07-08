@@ -1,8 +1,8 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.connection.ConnectionCreator" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.entity.Book" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.model.entity.Book" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.dao.BuyDao" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.model.BuyDao" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>

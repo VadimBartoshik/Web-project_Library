@@ -1,7 +1,7 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
-import by.epam.javaweb.bartoshik.library.dao.LoginDao;
-import by.epam.javaweb.bartoshik.library.entity.LoginBean;
+import by.epam.javaweb.bartoshik.library.model.LoginDao;
+import by.epam.javaweb.bartoshik.library.model.entity.LoginBean;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class LoginController extends HttpServlet {
     public static Logger logger = LogManager.getRootLogger();
