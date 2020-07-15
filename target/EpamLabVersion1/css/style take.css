@@ -1,0 +1,62 @@
+body{
+    background-color: #4c3905;
+}
+
+table {
+    position: relative;
+    background: #dc0; /* Цвет фона таблицы */
+    border: 5px double #191919; /* Рамка вокруг таблицы */
+    margin: 30px;
+}
+td, th {
+    padding: 5px; /* Поля вокруг текста */
+    border: 1px solid #fff; /* Рамка вокруг ячеек */
+}
+table tbody tr td:hover {
+    background: #cbd948;
+    transition-duration: 0.2s;
+}
+.take_btn input[type="submit"]{
+    border: 1px solid #191919;
+    color: #191919;
+    background-color: #7fe30e;
+}
+
+.take_btn input[type="submit"]:hover {
+    color: #142914;
+    background: #dfe382;
+    box-shadow: 0 0 10px #dfe382, 0 0 40px #dfe382, 0 0 80px #dfe382;
+    border: 1px solid #191919;
+}
+
+a.back{
+    position: relative;
+    color: #d3e330;
+    background-color: #191919;
+}
+
+a.back:hover{
+    color: #2d3205;
+    background: #d3e330;
+    box-shadow: 0 0 10px #d3e330, 0 0 40px #d3e330, 0 0 80px #d3e330;
+}
+header{
+    position: relative;
+    height: 40px;
+    background: #4c3905 ;
+    opacity: 0.7;
+    color: white
+}
+
+p{
+    position: absolute;
+    display: block;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+header.h1{
+    color: white;
+}

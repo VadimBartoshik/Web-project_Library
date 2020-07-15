@@ -1,8 +1,8 @@
 <%@ page import="java.sql.Connection" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.connection.ConnectionCreator" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.entity.Book" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.model.entity.Book" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.dao.BuyDao" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.model.BuyDao" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
@@ -15,13 +15,15 @@
 <style>
     <%@include file='css/style buy.css' %>
 </style>
-    <h1>List of book</h1>
+
+
     <p><img src="image/buy.png" alt="buyBook"></p>
     <%
-        ArrayList<Book> books = BuyDao.getAllFreeBook();
+        ArrayList<Book> books = BuyDao.getAllFreeBookList();
         request.setAttribute("books", books);
     %>
-
+<center>
+        <h1>List of book </h1>
     <table border="1">
         <tr>
 
@@ -43,7 +45,7 @@
             </tr>
         </c:forEach>
     </table>
-<center>
+
     <h1><a class="back" href="welcome.jsp">Back</a></h1>
 </center>
 </body>

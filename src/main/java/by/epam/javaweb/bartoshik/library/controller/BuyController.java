@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 
@@ -23,6 +24,9 @@ public class BuyController extends HttpServlet {
         logger.info("BuyController servlet started");
         request.setCharacterEncoding("UTF-8");
             try {
+                HttpSession session = request.getSession();
+                String s=(String) session.getAttribute("login");
+                logger.info("sessionID="+s);
                 logger.info("begin method");
                 int bookId =Integer.parseInt(request.getParameter("id"));
                 logger.info(bookId);

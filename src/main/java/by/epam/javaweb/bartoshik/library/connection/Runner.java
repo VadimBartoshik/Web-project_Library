@@ -9,7 +9,7 @@ public class Runner {
     public static void main(String[] args) {
         try {
 
-            returnBook(ConnectionCreator.getConnection(),1);
+            takeBook(ConnectionCreator.getConnection(),7,"masha@gmail.com");
             System.out.println("Connection to Store DB success full!");
 
         } catch (Exception ex) {
@@ -36,9 +36,9 @@ public class Runner {
         }
     }
 
-    public static void takeBook(Connection connection, int userId, int bookId) throws SQLException {
+    public static void takeBook(Connection connection, int bookId, String userEmail) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("UPDATE book SET userId = " + userId + " WHERE id = " + bookId + ";");
+        statement.execute("UPDATE book SET userId = " + getUserId(connection, userEmail) + " WHERE id = " + bookId + ";");
     }
 
     public static void printAllBookOfUser(Connection connection, int userId) throws SQLException {
@@ -62,6 +62,13 @@ public class Runner {
 
     public static void buyBook(Connection connection, int bookId) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("DELETE FROM book WHERE id = "+bookId+";");
+        statement.execute("DELETE FROM book WHERE id = " + bookId + ";");
+    }
+
+    public static int getUserId(Connection connection, String email) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT id FROM USER WHERE email='" + email + "';");
+        resultSet.next();
+        return resultSet.getInt(1);
     }
 }

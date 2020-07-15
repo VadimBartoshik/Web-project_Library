@@ -10,7 +10,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class BuyDao {
-    public static ArrayList<Book> getAllFreeBook() {
+    public static ArrayList<Book> getAllFreeBookList() {
 
         ArrayList<Book> books = new ArrayList<Book>();
 

@@ -44,4 +44,14 @@
     <url-pattern>/BuyController</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>TakeServlet</servlet-name>
+    <servlet-class>by.epam.javaweb.bartoshik.library.controller.TakeController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>TakeServlet</servlet-name>
+    <url-pattern>/TakeController</url-pattern>
+  </servlet-mapping>
+
 </web-app>
