@@ -1,9 +1,7 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
 import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
-import by.epam.javaweb.bartoshik.library.connection.Runner;
-import by.epam.javaweb.bartoshik.library.dao.BuyDao;
-import by.epam.javaweb.bartoshik.library.entity.Book;
+import by.epam.javaweb.bartoshik.library.model.BuyDao;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -12,8 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 
 
 public class BuyController extends HttpServlet {
@@ -26,6 +24,9 @@ public class BuyController extends HttpServlet {
         logger.info("BuyController servlet started");
         request.setCharacterEncoding("UTF-8");
             try {
+                HttpSession session = request.getSession();
+                String s=(String) session.getAttribute("login");
+                logger.info("sessionID="+s);
                 logger.info("begin method");
                 int bookId =Integer.parseInt(request.getParameter("id"));
                 logger.info(bookId);

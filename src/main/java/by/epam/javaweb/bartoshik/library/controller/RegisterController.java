@@ -1,7 +1,7 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
-import by.epam.javaweb.bartoshik.library.dao.RegisterDao;
-import by.epam.javaweb.bartoshik.library.entity.RegisterBean;
+import by.epam.javaweb.bartoshik.library.model.RegisterDao;
+import by.epam.javaweb.bartoshik.library.model.entity.RegisterBean;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
