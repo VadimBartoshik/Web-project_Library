@@ -1,7 +1,4 @@
-package by.epam.javaweb.bartoshik.library.model;
-
-import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
-import by.epam.javaweb.bartoshik.library.model.entity.LoginBean;
+package by.epam.javaweb.bartoshik.library.trash;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;

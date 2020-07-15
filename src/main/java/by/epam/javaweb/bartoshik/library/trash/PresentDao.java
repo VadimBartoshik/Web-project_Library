@@ -1,7 +1,5 @@
-package by.epam.javaweb.bartoshik.library.model;
+package by.epam.javaweb.bartoshik.library.trash;
 
-import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
-import by.epam.javaweb.bartoshik.library.model.entity.PresentBean;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

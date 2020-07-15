@@ -21,7 +21,7 @@ public interface GenericDao<T extends Identified<PK>, PK extends Serializable> {
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
     public T getByPK(PK key) throws PersistException;
 
-    /** Сохраняет состояние объекта group в базе данных */
+    /** Сохраняет состояние объекта в базе данных */
     public void update(T object) throws PersistException;
 
     /** Удаляет запись об объекте из базы данных */

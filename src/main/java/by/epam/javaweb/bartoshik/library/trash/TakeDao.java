@@ -1,6 +1,5 @@
-package by.epam.javaweb.bartoshik.library.model;
+package by.epam.javaweb.bartoshik.library.trash;
 
-import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
 import by.epam.javaweb.bartoshik.library.model.entity.Book;
 
 import java.sql.Connection;
@@ -9,7 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class BuyDao {
+public class TakeDao {
+
     public static ArrayList<Book> getAllFreeBookList() {
 
         ArrayList<Book> books = new ArrayList<Book>();
@@ -31,10 +31,15 @@ public class BuyDao {
         return books;
     }
 
-    public static void buyBook(Connection connection, int bookId) throws SQLException {
+    public static void takeBook(Connection connection, int bookId, String userEmail) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("DELETE FROM book WHERE id = "+bookId+";");
+        statement.execute("UPDATE book SET userId = " + getUserId(connection, userEmail) + " WHERE id = " + bookId + ";");
     }
 
-
+    public static int getUserId(Connection connection, String email) throws SQLException {
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT id FROM USER WHERE email='" + email + "';");
+        resultSet.next();
+        return resultSet.getInt(1);
+    }
 }

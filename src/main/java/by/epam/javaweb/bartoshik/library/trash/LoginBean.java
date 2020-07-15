@@ -1,4 +1,4 @@
-package by.epam.javaweb.bartoshik.library.model.entity;
+package by.epam.javaweb.bartoshik.library.trash;
 
 public class LoginBean {
     private String email;

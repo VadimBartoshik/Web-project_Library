@@ -1,7 +1,7 @@
-package by.epam.javaweb.bartoshik.library.controller;
+package by.epam.javaweb.bartoshik.library.trash;
 
-import by.epam.javaweb.bartoshik.library.model.LoginDao;
-import by.epam.javaweb.bartoshik.library.model.entity.LoginBean;
+import by.epam.javaweb.bartoshik.library.trash.LoginDao;
+import by.epam.javaweb.bartoshik.library.trash.LoginBean;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

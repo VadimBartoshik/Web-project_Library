@@ -1,4 +1,4 @@
-package by.epam.javaweb.bartoshik.library.model;
+package by.epam.javaweb.bartoshik.library.model.factory;
 
 
 import by.epam.javaweb.bartoshik.library.model.dao.base.GenericDao;

@@ -1,9 +1,10 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
-import by.epam.javaweb.bartoshik.library.model.DaoFactory;
+import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
 import by.epam.javaweb.bartoshik.library.model.dao.base.GenericDao;
 import by.epam.javaweb.bartoshik.library.model.entity.Book;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
+import by.epam.javaweb.bartoshik.library.model.factory.MySqlDaoFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -16,6 +17,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class BookController extends HttpServlet {
+    private final String ADD_USER_BOOK = "/book/add";
+    private final String DELETE_USER_BOOK = "/book/delete";
+    private final String GET_ALL_USER_BOOK = "/book/getAll";
+    private final String UPDATE_USER_BOOK = "/book/update";
+
     public static Logger logger = LogManager.getRootLogger();
     private GenericDao dao;
 
@@ -37,32 +43,25 @@ public class BookController extends HttpServlet {
 
         try {
             switch (action) {
-                case "/new":
-                    //   showNewForm(request, response);
+                case ADD_USER_BOOK:
                     dao.create();
                     break;
-                case "/insert":
+                case DELETE_USER_BOOK:
+                    dao.delete();
+                    break;
+                case GET_ALL_USER_BOOK:
+                    dao.getAll();
+                    break;
+                case UPDATE_USER_BOOK:
                     dao.update();
-                    //    insertBook(request, response);
                     break;
-                case "/delete":
-                    deleteBook(request, response);
-                    break;
-                case "/edit":
-                    showEditForm(request, response);
-                    break;
-                case "/update":
-                    updateBook(request, response);
-                    break;
+
                 default:
-                    listBook(request, response);
+                    dao.getAll();
                     break;
             }
         } catch (SQLException | PersistException ex) {
             throw new ServletException(ex);
         }
-
-
     }
-
 }

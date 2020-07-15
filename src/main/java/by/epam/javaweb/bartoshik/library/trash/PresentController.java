@@ -1,7 +1,7 @@
-package by.epam.javaweb.bartoshik.library.controller;
+package by.epam.javaweb.bartoshik.library.trash;
 
-import by.epam.javaweb.bartoshik.library.model.PresentDao;
-import by.epam.javaweb.bartoshik.library.model.entity.PresentBean;
+import by.epam.javaweb.bartoshik.library.trash.PresentDao;
+import by.epam.javaweb.bartoshik.library.trash.PresentBean;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 

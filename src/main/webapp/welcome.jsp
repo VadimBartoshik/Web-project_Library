@@ -23,8 +23,7 @@
         <nav class="navigation-menu">
             <a href="take.jsp"> <img src="icon/takeBookIcon.png"> Take book</a>
             <a href="#"> <img src="icon/returnIcon.png"> Return book</a>
-            <a href="present.jsp"> <img src="icon/presentIcon.png"> </i> Present book</a>
-            <a href="buy.jsp"> <img src="icon/buyIcon.png"> Buy book</a>
+            <a href="getAll.jsp"> <img src="icon/buyIcon.png"> get all</a>
             <a href="logout.jsp"> <img src="icon/logOutIcon.png">Logout</a>
         </nav>
     </div>

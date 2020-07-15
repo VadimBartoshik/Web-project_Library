@@ -1,8 +1,8 @@
 <%@ page import="java.sql.Connection" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.connection.ConnectionCreator" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.trash.ConnectionCreator" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.model.entity.Book" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.model.BuyDao" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.trash.BuyDao" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>
-                    <form class="buy_btn" method="post" action="BuyController" >
+                    <form class="buy_btn" method="post" action="getAllBook" >
                          <input type="hidden" name="id" value="${book.id}">
                          <input type="submit" value="Buy">
                     </form>

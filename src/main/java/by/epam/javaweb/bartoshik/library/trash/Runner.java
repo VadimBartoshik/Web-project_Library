@@ -1,9 +1,6 @@
-package by.epam.javaweb.bartoshik.library.connection;
+package by.epam.javaweb.bartoshik.library.trash;
 
-import java.io.IOException;
 import java.sql.*;
-
-import static by.epam.javaweb.bartoshik.library.connection.ConnectionCreator.getConnection;
 
 public class Runner {
     public static void main(String[] args) {

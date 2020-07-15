@@ -1,4 +1,4 @@
-package by.epam.javaweb.bartoshik.library.connection;
+package by.epam.javaweb.bartoshik.library.trash;
 
 import java.io.FileInputStream;
 import java.io.IOException;

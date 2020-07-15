@@ -1,6 +1,5 @@
-package by.epam.javaweb.bartoshik.library.controller;
+package by.epam.javaweb.bartoshik.library.model.factory;
 
-import by.epam.javaweb.bartoshik.library.model.DaoFactory;
 import by.epam.javaweb.bartoshik.library.model.dao.MySqlBookDao;
 import by.epam.javaweb.bartoshik.library.model.dao.MySqlUserDao;
 import by.epam.javaweb.bartoshik.library.model.dao.base.GenericDao;

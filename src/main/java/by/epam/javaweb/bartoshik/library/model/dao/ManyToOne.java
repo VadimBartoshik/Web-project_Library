@@ -1,6 +1,6 @@
 package by.epam.javaweb.bartoshik.library.model.dao;
 
-import by.epam.javaweb.bartoshik.library.model.DaoFactory;
+import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
 import by.epam.javaweb.bartoshik.library.model.dao.base.Identified;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 

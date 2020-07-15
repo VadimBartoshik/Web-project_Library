@@ -1,7 +1,5 @@
-package by.epam.javaweb.bartoshik.library.controller;
+package by.epam.javaweb.bartoshik.library.trash;
 
-import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
-import by.epam.javaweb.bartoshik.library.model.BuyDao;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -35,7 +33,7 @@ public class BuyController extends HttpServlet {
                 requestDispatcher.forward(request, response);
             } catch (Exception ex) {
                 logger.info("Error BuyController servlet");
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("buy.jsp");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("getAll.jsp");
                 requestDispatcher.forward(request, response);
             }
     }
