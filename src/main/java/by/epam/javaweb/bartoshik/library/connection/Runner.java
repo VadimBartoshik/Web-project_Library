@@ -7,9 +7,13 @@ import static by.epam.javaweb.bartoshik.library.connection.ConnectionCreator.get
 
 public class Runner {
     public static void main(String[] args) {
+
+
+
+
         try {
 
-            returnBook(ConnectionCreator.getConnection(),1);
+            printAllTable(ConnectionCreator.getConnection());
             System.out.println("Connection to Store DB success full!");
 
         } catch (Exception ex) {

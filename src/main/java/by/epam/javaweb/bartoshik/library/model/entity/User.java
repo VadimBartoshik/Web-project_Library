@@ -1,6 +1,8 @@
 package by.epam.javaweb.bartoshik.library.model.entity;
 
-public class User {
+import by.epam.javaweb.bartoshik.library.model.dao.base.Identified;
+
+public class User implements Identified<Integer> {
     private int id;
 
     public User() {
@@ -10,7 +12,7 @@ public class User {
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
