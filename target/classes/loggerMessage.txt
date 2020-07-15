@@ -1,0 +1,26 @@
+
+line:39 - [INFO ][2020-06-22 18:45:19] root: - IOException
+line:35 - [INFO ][2020-06-22 18:45:19] root: - FAIL
+line:39 - [INFO ][2020-06-22 18:48:16] root: - IOException
+line:35 - [INFO ][2020-06-22 18:48:16] root: - FAIL
+line:24 - [INFO ][2020-06-22 18:56:39] root: - dsfwergewrggergreverveewvwrevrg@gmail.com3424235435
+line:39 - [INFO ][2020-06-22 18:56:39] root: - IOException
+line:36 - [INFO ][2020-06-22 18:56:39] root: - FAIL
+line:25 - [INFO ][2020-06-22 18:59:18] root: - fffffff ssssss ffffffffff@gmail.com 1234565677
+line:39 - [INFO ][2020-06-22 18:59:18] root: - IOException
+line:37 - [INFO ][2020-06-22 18:59:18] root: - FAIL
+line:25 - [INFO ][2020-06-22 19:07:36] root: - dddddddddd sssssssssssss sssssssssssss@gmail.com 123456789
+line:42 - [INFO ][2020-06-22 19:07:36] root: - SQLException
+line:37 - [INFO ][2020-06-22 19:07:36] root: - FAIL
+line:25 - [INFO ][2020-06-22 19:09:29] root: - sdafsafced dcsdcscdc sdvdsvds@gfv.nj 123456
+line:42 - [INFO ][2020-06-22 19:09:29] root: - SQLException
+line:37 - [INFO ][2020-06-22 19:09:29] root: - FAIL
+line:25 - [INFO ][2020-06-22 19:18:54] root: - ddddd fffffff xsxsxscs@gmail.com 1234567
+line:42 - [INFO ][2020-06-22 19:18:54] root: - SQLException
+line:37 - [INFO ][2020-06-22 19:18:54] root: - FAIL
+line:25 - [INFO ][2020-06-22 20:02:53] root: - vadim bartoshik vadim@gmail.com 123456789
+line:25 - [INFO ][2020-06-22 20:02:53] root: - connection is good
+line:34 - [INFO ][2020-06-22 20:02:54] root: - preparedStatement is executeUpdate
+line:37 - [INFO ][2020-06-22 20:02:54] root: - SUCCESS
+line:34 - [INFO ][2020-06-22 20:03:44] root: - SUCCESS LOGIN
+line:34 - [INFO ][2020-06-22 21:08:12] root: - SUCCESS LOGIN
