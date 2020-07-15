@@ -14,7 +14,10 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MySqlBookDao extends AbstractJDBCDao<Book, Integer> {
+public class MySqlBookDao extends AbstractJDBCDao<Book, Integer>
+
+
+{
 
     private class PersistBook extends Book {
         public void setId(int id) {

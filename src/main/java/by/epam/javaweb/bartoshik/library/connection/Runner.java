@@ -7,9 +7,13 @@ import static by.epam.javaweb.bartoshik.library.connection.ConnectionCreator.get
 
 public class Runner {
     public static void main(String[] args) {
+
+
+
+
         try {
 
-            takeBook(ConnectionCreator.getConnection(),7,"masha@gmail.com");
+            printAllTable(ConnectionCreator.getConnection());
             System.out.println("Connection to Store DB success full!");
 
         } catch (Exception ex) {
@@ -36,9 +40,9 @@ public class Runner {
         }
     }
 
-    public static void takeBook(Connection connection, int bookId, String userEmail) throws SQLException {
+    public static void takeBook(Connection connection, int userId, int bookId) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("UPDATE book SET userId = " + getUserId(connection, userEmail) + " WHERE id = " + bookId + ";");
+        statement.execute("UPDATE book SET userId = " + userId + " WHERE id = " + bookId + ";");
     }
 
     public static void printAllBookOfUser(Connection connection, int userId) throws SQLException {
@@ -62,13 +66,6 @@ public class Runner {
 
     public static void buyBook(Connection connection, int bookId) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("DELETE FROM book WHERE id = " + bookId + ";");
-    }
-
-    public static int getUserId(Connection connection, String email) throws SQLException {
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT id FROM USER WHERE email='" + email + "';");
-        resultSet.next();
-        return resultSet.getInt(1);
+        statement.execute("DELETE FROM book WHERE id = "+bookId+";");
     }
 }
