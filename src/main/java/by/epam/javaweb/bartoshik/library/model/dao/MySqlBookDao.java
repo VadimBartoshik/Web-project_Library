@@ -5,123 +5,69 @@ import by.epam.javaweb.bartoshik.library.model.dao.base.BaseJDBCDao;
 import by.epam.javaweb.bartoshik.library.model.entity.Book;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
-
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.util.LinkedList;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlBookDao extends BaseJDBCDao<Book, Integer> {
-
     public MySqlBookDao(DaoFactory<Connection> parentFactory, Connection connection) {
         super(parentFactory, connection);
-         addRelation(Student.class, "group");
-    }
-
-    private class PersistBook extends Book {
-        public void setId(int id) {
-            super.setId(id);
-        }
     }
 
     @Override
     public String getSelectQuery() {
         return "SELECT id, title, author FROM book WHERE userId is null;";
-        //  return "SELECT id, name, surname, enrolment_date, group_id FROM daotalk.Student ";
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO daotalk.Student (name, surname, enrolment_date, group_id) \n" +
-                "VALUES (?, ?, ?, ?);";
+        return "INSERT INTO book (title, author) VALUES (?,?);";
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE daotalk.Student \n" +
-                "SET name = ?, surname  = ?, enrolment_date = ?, group_id = ? \n" +
-                "WHERE id = ?;";
+        return "UPDATE book SET userId = null WHERE id = ?;";
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM daotalk.Student WHERE id= ?;";
-    }
-
-    @Override
-    public Book create() throws PersistException {
-        Book book = new Book();
-        return persist(book);
+        return "DELETE FROM book WHERE id= ?;";
     }
 
     @Override
     protected List<Book> parseResultSet(ResultSet rs) throws PersistException {
-        List<Book> result = new LinkedList<Book>();
-//        try {
-//            while (rs.next()) {
-//                PersistStudent student = new PersistStudent();
-//                student.setId(rs.getInt("id"));
-//                student.setName(rs.getString("name"));
-//                student.setSurname(rs.getString("surname"));
-//                student.setEnrolmentDate(rs.getDate("enrolment_date"));
-//                student.setGroup((Group) getDependence(Group.class, rs.getInt("group_id")));
-//                result.add(student);
-//            }
-//        } catch (Exception e) {
-//            throw new PersistException(e);
-//        }
+        List<Book> result = new ArrayList<>();
+        try {
+            while (rs.next()) {
+                Book book = new Book();
+                book.setId(rs.getInt("id"));
+                book.setAuthor(rs.getString("author"));
+                book.setTitle(rs.getString("title"));
+                result.add(book);
+            }
+        } catch (SQLException exception) {
+            throw new PersistException(exception);
+        }
         return result;
     }
 
     @Override
-    protected void prepareStatementForInsert(PreparedStatement statement, Book object) throws PersistException {
-
+    protected void prepareStatementForInsert(PreparedStatement statement, Book book) throws PersistException {
+        try {
+            statement.setString(1, book.getTitle());
+            statement.setString(2, book.getAuthor());
+        } catch (SQLException exception) {
+            throw new PersistException(exception);
+        }
     }
 
     @Override
-    protected void prepareStatementForUpdate(PreparedStatement statement, Book object) throws PersistException {
-
-    }
-
-//    @Override
-//    protected void prepareStatementForUpdate(PreparedStatement statement, Student object) throws PersistException {
-//
-//       try {
-//            Date sqlDate = convert(object.getEnrolmentDate());
-//            int groupId = (object.getGroup() == null || object.getGroup().getId() == null) ? -1
-//                    : object.getGroup().getId();
-//            statement.setString(1, object.getName());
-//            statement.setString(2, object.getSurname());
-//            statement.setDate(3, sqlDate);
-//            statement.setInt(4, groupId);
-//            statement.setInt(5, object.getId());
-//        } catch (Exception e) {
-//            throw new PersistException(e);
-//        }
-//    }
-
-//    @Override
-//    protected void prepareStatementForInsert(PreparedStatement statement, Student object) throws PersistException {
-//        try {
-//            Date sqlDate = convert(object.getEnrolmentDate());
-//            int groupId = (object.getGroup() == null || object.getGroup().getId() == null) ? -1
-//                    : object.getGroup().getId();
-//            statement.setString(1, object.getName());
-//            statement.setString(2, object.getSurname());
-//            statement.setDate(3, sqlDate);
-//            statement.setInt(4, groupId);
-//        } catch (Exception e) {
-//            throw new PersistException(e);
-//        }
-//    }
-
-    protected Date convert(java.util.Date date) {
-        if (date == null) {
-            return null;
+    protected void prepareStatementForUpdate(PreparedStatement statement, Integer key) throws PersistException {
+        try {
+            statement.setInt(1, key);
+        } catch (SQLException exception) {
+            throw new PersistException(exception);
         }
-        return new Date(date.getTime());
     }
 }
 

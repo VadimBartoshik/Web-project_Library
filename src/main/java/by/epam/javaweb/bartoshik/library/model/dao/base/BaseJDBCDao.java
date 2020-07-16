@@ -1,16 +1,13 @@
 package by.epam.javaweb.bartoshik.library.model.dao.base;
 
 import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
-import by.epam.javaweb.bartoshik.library.model.dao.ManyToOne;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
-import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.HashSet;
+import java.sql.SQLException;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Абстрактный класс предоставляющий базовую реализацию CRUD операций с использованием JDBC.
@@ -19,6 +16,13 @@ import java.util.Set;
  * @param <PK> тип первичного ключа
  */
 public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> implements BaseDao<T, PK> {
+    private DaoFactory<Connection> parentFactory;
+    private Connection connection;
+
+    public BaseJDBCDao(DaoFactory<Connection> parentFactory, Connection connection) {
+        this.parentFactory = parentFactory;
+        this.connection = connection;
+    }
 
     /**
      * Возвращает sql запрос для получения всех записей.
@@ -61,13 +65,7 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
     /**
      * Устанавливает аргументы update запроса в соответствии со значением полей объекта object.
      */
-    protected abstract void prepareStatementForUpdate(PreparedStatement statement, T object) throws PersistException;
-
-    private DaoFactory<Connection> parentFactory;
-
-    private Connection connection;
-
-    private Set<ManyToOne> relations = new HashSet<>();
+    protected abstract void prepareStatementForUpdate(PreparedStatement statement, PK key) throws PersistException;
 
     @Override
     public T getByPK(Integer key) throws PersistException {
@@ -97,115 +95,43 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             ResultSet rs = statement.executeQuery();
             list = parseResultSet(rs);
-        } catch (Exception e) {
-            throw new PersistException(e);
+        } catch (Exception exception) {
+            throw new PersistException(exception);
         }
         return list;
     }
 
     @Override
-    public T persist(T object) throws PersistException {
-        if (object.getId() != null) {
-            throw new PersistException("Object is already persist.");
-        }
-        // Сохраняем зависимости
-        saveDependences(object);
-
-        T persistInstance;
-        // Добавляем запись
+    public void create(T object) throws PersistException {
         String sql = getCreateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForInsert(statement, object);
-            int count = statement.executeUpdate();
-            if (count != 1) {
-                throw new PersistException("On persist modify more then 1 record: " + count);
-            }
-        } catch (Exception e) {
-            throw new PersistException(e);
+        } catch (SQLException exception) {
+            throw new PersistException(exception);
         }
-        // Получаем только что вставленную запись
-        sql = getSelectQuery() + " WHERE id = last_insert_id();";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            ResultSet rs = statement.executeQuery();
-            List<T> list = parseResultSet(rs);
-            if ((list == null) || (list.size() != 1)) {
-                throw new PersistException("Exception on findByPK new persist data.");
-            }
-            persistInstance = list.iterator().next();
-        } catch (Exception e) {
-            throw new PersistException(e);
-        }
-        return persistInstance;
     }
 
     @Override
-    public void update(T object) throws PersistException {
-        // Сохраняем зависимости
-        saveDependences(object);
-
+    public void update(PK key) throws PersistException {
         String sql = getUpdateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql);) {
-            prepareStatementForUpdate(statement, object); // заполнение аргументов запроса оставим на совесть потомков
-            int count = statement.executeUpdate();
-            if (count != 1) {
-                throw new PersistException("On update modify more then 1 record: " + count);
-            }
+            prepareStatementForUpdate(statement, key);
         } catch (Exception e) {
             throw new PersistException(e);
         }
     }
 
     @Override
-    public void delete(T object) throws PersistException {
+    public void delete(PK key) throws PersistException {
         String sql = getDeleteQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             try {
-                statement.setObject(1, object.getId());
+                statement.execute(sql);
             } catch (Exception e) {
                 throw new PersistException(e);
             }
-            int count = statement.executeUpdate();
-            if (count != 1) {
-                throw new PersistException("On delete modify more then 1 record: " + count);
-            }
-            statement.close();
         } catch (Exception e) {
             throw new PersistException(e);
-        }
-    }
-
-    public BaseJDBCDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        this.parentFactory = parentFactory;
-        this.connection = connection;
-    }
-
-    protected Identified getDependence(Class<? extends Identified> dtoClass, Serializable pk) throws PersistException {
-        return parentFactory.getDao(connection, dtoClass).getByPK(pk);
-    }
-
-    protected boolean addRelation(Class<? extends Identified> ownerClass, String field) {
-        try {
-            return relations.add(new ManyToOne(ownerClass, parentFactory, field));
-        } catch (NoSuchFieldException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private void saveDependences(Identified owner) throws PersistException {
-        for (ManyToOne m : relations) {
-            try {
-                if (m.getDependence(owner) == null) {
-                    continue;
-                }
-                if (m.getDependence(owner).getId() == null) {
-                    Identified depend = m.persistDependence(owner, connection);
-                    m.setDependence(owner, depend);
-                } else {
-                    m.updateDependence(owner, connection);
-                }
-            } catch (Exception e) {
-                throw new PersistException("Exception on save dependence in relation " + m + ".", e);
-            }
         }
     }
 }

@@ -13,19 +13,19 @@ import java.util.List;
 public interface BaseDao<T extends Identified<PK>, PK extends Serializable> {
 
     /** Создает новую запись и соответствующий ей объект */
-    public T create() throws PersistException;
+    public void create(T object) throws PersistException;
 
     /** Создает новую запись, соответствующую объекту object */
-    public T persist(T object)  throws PersistException;
+//    public T persist(T object)  throws PersistException;
 
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
     public T getByPK(PK key) throws PersistException;
 
     /** Сохраняет состояние объекта в базе данных */
-    public void update(T object) throws PersistException;
+    public void update(PK key) throws PersistException;
 
     /** Удаляет запись об объекте из базы данных */
-    public void delete(T object) throws PersistException;
+    public void delete(PK key) throws PersistException;
 
     /** Возвращает список объектов соответствующих всем записям в базе данных */
     public List<T> getAll() throws PersistException;

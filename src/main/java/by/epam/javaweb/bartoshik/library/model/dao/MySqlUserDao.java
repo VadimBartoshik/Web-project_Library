@@ -37,7 +37,7 @@ public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM daotalk.Group WHERE id= ?;";
+        return "";
     }
 
     @Override

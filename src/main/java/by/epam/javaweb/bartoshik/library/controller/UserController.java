@@ -17,10 +17,10 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class UserController extends HttpServlet {
-    private final String ADD_USER = "/addUser";
-    private final String DELETE_USER = "/deleteUser";
-    private final String GET_ALL_USER = "/getAllUser";
-    private final String UPDATE_USER = "/updateUser";
+    private static final  String ADD_USER = "/addUser";
+    private static final String DELETE_USER = "/deleteUser";
+    private static final String GET_ALL_USER = "/getAllUser";
+    private static final String UPDATE_USER = "/updateUser";
 
     private BaseDao dao;
     public static Logger logger = LogManager.getRootLogger();

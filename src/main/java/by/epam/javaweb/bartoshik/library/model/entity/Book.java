@@ -11,6 +11,11 @@ public class Book implements Identified<Integer> {
     public Book() {
     }
 
+    public Book(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
     public Book(int id, String title, String author) {
         this.id = id;
         this.title = title;
