@@ -1,7 +1,7 @@
 package by.epam.javaweb.bartoshik.library.model.dao;
 
 import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
-import by.epam.javaweb.bartoshik.library.model.dao.base.AbstractJDBCDao;
+import by.epam.javaweb.bartoshik.library.model.dao.base.BaseJDBCDao;
 import by.epam.javaweb.bartoshik.library.model.entity.User;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MySqlUserDao extends AbstractJDBCDao<User, Integer> {
+public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
     private class PersistGroup extends User {
         public void setId(int id) {
             super.setId(id);

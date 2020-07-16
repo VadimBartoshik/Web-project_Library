@@ -1,7 +1,7 @@
 package by.epam.javaweb.bartoshik.library.model.dao;
 
 import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
-import by.epam.javaweb.bartoshik.library.model.dao.base.AbstractJDBCDao;
+import by.epam.javaweb.bartoshik.library.model.dao.base.BaseJDBCDao;
 import by.epam.javaweb.bartoshik.library.model.entity.Book;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
@@ -13,10 +13,12 @@ import java.sql.ResultSet;
 import java.util.LinkedList;
 import java.util.List;
 
-public class MySqlBookDao extends AbstractJDBCDao<Book, Integer>
+public class MySqlBookDao extends BaseJDBCDao<Book, Integer> {
 
-
-{
+    public MySqlBookDao(DaoFactory<Connection> parentFactory, Connection connection) {
+        super(parentFactory, connection);
+         addRelation(Student.class, "group");
+    }
 
     private class PersistBook extends Book {
         public void setId(int id) {
@@ -52,11 +54,6 @@ public class MySqlBookDao extends AbstractJDBCDao<Book, Integer>
     public Book create() throws PersistException {
         Book book = new Book();
         return persist(book);
-    }
-
-    public MySqlBookDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        super(parentFactory, connection);
-      //  addRelation(Student.class, "group");
     }
 
     @Override

@@ -18,7 +18,7 @@ import java.util.Set;
  * @param <T>  тип объекта персистенции
  * @param <PK> тип первичного ключа
  */
-public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integer> implements GenericDao<T, PK> {
+public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> implements BaseDao<T, PK> {
 
     /**
      * Возвращает sql запрос для получения всех записей.
@@ -174,7 +174,7 @@ public abstract class AbstractJDBCDao<T extends Identified<PK>, PK extends Integ
         }
     }
 
-    public AbstractJDBCDao(DaoFactory<Connection> parentFactory, Connection connection) {
+    public BaseJDBCDao(DaoFactory<Connection> parentFactory, Connection connection) {
         this.parentFactory = parentFactory;
         this.connection = connection;
     }

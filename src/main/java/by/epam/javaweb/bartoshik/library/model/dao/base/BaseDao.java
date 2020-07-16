@@ -10,7 +10,7 @@ import java.util.List;
  * @param <T> тип объекта персистенции
  * @param <PK> тип первичного ключа
  */
-public interface GenericDao<T extends Identified<PK>, PK extends Serializable> {
+public interface BaseDao<T extends Identified<PK>, PK extends Serializable> {
 
     /** Создает новую запись и соответствующий ей объект */
     public T create() throws PersistException;

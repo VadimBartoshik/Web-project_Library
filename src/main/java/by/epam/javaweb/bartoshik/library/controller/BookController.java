@@ -1,7 +1,7 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
 import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
-import by.epam.javaweb.bartoshik.library.model.dao.base.GenericDao;
+import by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao;
 import by.epam.javaweb.bartoshik.library.model.entity.Book;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 import by.epam.javaweb.bartoshik.library.model.factory.MySqlDaoFactory;
@@ -17,13 +17,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class BookController extends HttpServlet {
-    private final String ADD_USER_BOOK = "/book/add";
-    private final String DELETE_USER_BOOK = "/book/delete";
-    private final String GET_ALL_USER_BOOK = "/book/getAll";
-    private final String UPDATE_USER_BOOK = "/book/update";
+    private final String ADD_USER_BOOK = "/addBook";
+    private final String DELETE_USER_BOOK = "/deleteBook";
+    private final String GET_ALL_USER_BOOK = "/getAllBook";
+    private final String UPDATE_USER_BOOK = "/updateBook";
 
     public static Logger logger = LogManager.getRootLogger();
-    private GenericDao dao;
+    private BaseDao dao;
 
 
     public void init() {

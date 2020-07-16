@@ -1,7 +1,7 @@
 package by.epam.javaweb.bartoshik.library.model.factory;
 
 
-import by.epam.javaweb.bartoshik.library.model.dao.base.GenericDao;
+import by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
 /**
@@ -10,7 +10,7 @@ import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 public interface DaoFactory<Context> {
 
     public interface DaoCreator<Context> {
-        public GenericDao create(Context context);
+        public BaseDao create(Context context);
     }
 
     /**
@@ -21,5 +21,5 @@ public interface DaoFactory<Context> {
     /**
      * Возвращает объект для управления персистентным состоянием объекта
      */
-    public GenericDao getDao(Context context, Class dtoClass) throws PersistException;
+    public BaseDao getDao(Context context, Class dtoClass) throws PersistException;
 }

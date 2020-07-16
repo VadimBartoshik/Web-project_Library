@@ -1,7 +1,7 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
 import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
-import by.epam.javaweb.bartoshik.library.model.dao.base.GenericDao;
+import by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao;
 import by.epam.javaweb.bartoshik.library.model.entity.User;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 import by.epam.javaweb.bartoshik.library.model.factory.MySqlDaoFactory;
@@ -17,12 +17,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class UserController extends HttpServlet {
-    private final String ADD_USER = "/user/add";
-    private final String DELETE_USER = "/user/delete";
-    private final String GET_ALL_USER = "/user/getAll";
-    private final String UPDATE_USER = "/user/update";
+    private final String ADD_USER = "/addUser";
+    private final String DELETE_USER = "/deleteUser";
+    private final String GET_ALL_USER = "/getAllUser";
+    private final String UPDATE_USER = "/updateUser";
 
-    private GenericDao dao;
+    private BaseDao dao;
     public static Logger logger = LogManager.getRootLogger();
 
     public void init() {
@@ -43,7 +43,6 @@ public class UserController extends HttpServlet {
         try {
             switch (action) {
                 case ADD_USER:
-
                     dao.create();
                     break;
                 case DELETE_USER:
