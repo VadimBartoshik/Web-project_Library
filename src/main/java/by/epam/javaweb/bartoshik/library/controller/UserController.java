@@ -1,5 +1,6 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
+import by.epam.javaweb.bartoshik.library.model.entity.Book;
 import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
 import by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao;
 import by.epam.javaweb.bartoshik.library.model.entity.User;
@@ -12,18 +13,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 public class UserController extends HttpServlet {
-    private static final  String ADD_USER = "/addUser";
-    private static final String DELETE_USER = "/deleteUser";
-    private static final String GET_ALL_USER = "/getAllUser";
-    private static final String UPDATE_USER = "/updateUser";
-
-    private BaseDao dao;
     public static Logger logger = LogManager.getRootLogger();
+    private BaseDao<User, Integer> dao;
 
     public void init() {
         DaoFactory<Connection> factory = new MySqlDaoFactory();
@@ -37,31 +31,49 @@ public class UserController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException {
+
+        final String ADD_USER = "/addUser";
+        final String DELETE_USER = "/deleteUser";
+        final String GET_ALL_USER = "/getAllUser";
+        final String UPDATE_USER = "/updateUser";
+
         String action = request.getServletPath();
+        User user;
+        Integer userId;
 
         try {
             switch (action) {
                 case ADD_USER:
-                    dao.create();
+                    user = getUserFromJsp(request);
+                    dao.create(user);
                     break;
                 case DELETE_USER:
-                    dao.delete();
-                    //    insertBook(request, response);
+                    userId = getUserIdFromJsp(request);
+                    dao.delete(userId);
                     break;
                 case GET_ALL_USER:
                     dao.getAll();
                     break;
                 case UPDATE_USER:
-                    dao.update();
-                    break;
-
-                default:
-                    dao.getAll();
+                    userId = getUserIdFromJsp(request);
+                    dao.update(userId);
                     break;
             }
-        } catch (SQLException | PersistException ex) {
+        } catch (PersistException ex) {
             throw new ServletException(ex);
         }
+    }
+
+    private User getUserFromJsp(HttpServletRequest request) {
+        String firstName = request.getParameter("txt_firstName");
+        String lastName = request.getParameter("txt_lastName");
+        String email = request.getParameter("txt_email");
+        String password = request.getParameter("txt_password");
+        return new User(firstName, lastName, email, password);
+    }
+
+    private Integer getUserIdFromJsp(HttpServletRequest request) {
+        return Integer.parseInt(request.getParameter("id"));
     }
 }

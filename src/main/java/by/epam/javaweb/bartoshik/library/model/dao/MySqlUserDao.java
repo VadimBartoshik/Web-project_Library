@@ -8,26 +8,24 @@ import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.LinkedList;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
-    private class PersistGroup extends User {
-        public void setId(int id) {
-            super.setId(id);
-        }
-    }
 
+    public MySqlUserDao(DaoFactory<Connection> parentFactory, Connection connection) {
+        super(parentFactory, connection);
+    }
 
     @Override
     public String getSelectQuery() {
-        return "SELECT id, number, department FROM daotalk.Group";
+        return "SELECT firstName, lastName, email FROM user;";
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO daotalk.Group (number, department) \n" +
-                "VALUES (?, ?);";
+        return "INSERT INTO user (firstName, lastName, email, password) VALUES (?, ?, ?, ?);";
     }
 
     @Override
@@ -37,32 +35,23 @@ public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
 
     @Override
     public String getDeleteQuery() {
-        return "";
-    }
-
-    @Override
-    public User create() throws PersistException {
-        User user = new User();
-        return persist(user);
-    }
-
-    public MySqlUserDao(DaoFactory<Connection> parentFactory, Connection connection) {
-        super(parentFactory, connection);
+        return "DELETE FROM user WHERE id= ?;";
     }
 
     @Override
     protected List<User> parseResultSet(ResultSet rs) throws PersistException {
-        LinkedList<User> result = new LinkedList<User>();
+        List<User> result = new ArrayList<>();
         try {
             while (rs.next()) {
-                PersistGroup group = new PersistGroup();
-                group.setId(rs.getInt("id"));
-                group.setNumber(rs.getInt("number"));
-                group.setDepartment(rs.getString("department"));
-                result.add(group);
+                User user = new User();
+                user.setId(rs.getInt("id"));
+                user.setFirsName(rs.getString("firstName"));
+                user.setLastName(rs.getString("lastName"));
+                user.setEmail(rs.getString("email"));
+                result.add(user);
             }
-        } catch (Exception e) {
-            throw new PersistException(e);
+        } catch (SQLException exception) {
+            throw new PersistException(exception);
         }
         return result;
     }
@@ -70,21 +59,26 @@ public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
     @Override
     protected void prepareStatementForInsert(PreparedStatement statement, User user) throws PersistException {
         try {
-            statement.setInt(1, user.getNumber());
-            statement.setString(2, user.getDepartment());
+            statement.setString(1, user.getFirsName());
+            statement.setString(2, user.getLastName());
+            statement.setString(3, user.getEmail());
+            statement.setString(4, user.getPassword());
         } catch (Exception e) {
             throw new PersistException(e);
         }
     }
 
     @Override
-    protected void prepareStatementForUpdate(PreparedStatement statement, User user) throws PersistException {
+    protected void prepareStatementForDelete(PreparedStatement statement, Integer key) throws PersistException {
         try {
-            statement.setInt(1, user.getNumber());
-            statement.setString(2, user.getDepartment());
-            statement.setInt(3, user.getId());
-        } catch (Exception e) {
-            throw new PersistException(e);
+            statement.setInt(1, key);
+        } catch (SQLException exception) {
+            throw new PersistException(exception);
         }
+    }
+
+    @Override
+    protected void prepareStatementForUpdate(PreparedStatement statement, Integer key) throws PersistException {
+
     }
 }

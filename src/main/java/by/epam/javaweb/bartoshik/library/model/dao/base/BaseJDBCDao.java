@@ -67,26 +67,10 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
      */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, PK key) throws PersistException;
 
-    @Override
-    public T getByPK(Integer key) throws PersistException {
-        List<T> list;
-        String sql = getSelectQuery();
-        sql += " WHERE id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setInt(1, key);
-            ResultSet rs = statement.executeQuery();
-            list = parseResultSet(rs);
-        } catch (Exception e) {
-            throw new PersistException(e);
-        }
-        if (list == null || list.size() == 0) {
-            return null;
-        }
-        if (list.size() > 1) {
-            throw new PersistException("Received more than one record.");
-        }
-        return list.iterator().next();
-    }
+    /**
+     * Устанавливает аргументы delete запроса в соответствии со значением полей объекта object.
+     */
+    protected abstract void prepareStatementForDelete(PreparedStatement statement, PK key) throws PersistException;
 
     @Override
     public List<T> getAll() throws PersistException {
@@ -106,6 +90,7 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
         String sql = getCreateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             prepareStatementForInsert(statement, object);
+            statement.execute(sql);
         } catch (SQLException exception) {
             throw new PersistException(exception);
         }
@@ -116,6 +101,7 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
         String sql = getUpdateQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql);) {
             prepareStatementForUpdate(statement, key);
+            statement.execute(sql);
         } catch (Exception e) {
             throw new PersistException(e);
         }
@@ -126,6 +112,7 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
         String sql = getDeleteQuery();
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             try {
+                prepareStatementForDelete(statement, key);
                 statement.execute(sql);
             } catch (Exception e) {
                 throw new PersistException(e);

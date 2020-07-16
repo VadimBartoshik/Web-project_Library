@@ -12,19 +12,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class BookController extends HttpServlet {
-    private final String ADD_USER_BOOK = "/addBook";
-    private final String DELETE_USER_BOOK = "/deleteBook";
-    private final String GET_ALL_USER_BOOK = "/getAllBook";
-    private final String UPDATE_USER_BOOK = "/updateBook";
-
     public static Logger logger = LogManager.getRootLogger();
     private BaseDao<Book, Integer> dao;
 
@@ -40,44 +30,46 @@ public class BookController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException {
+
+        final String ADD_USER_BOOK = "/addBook";
+        final String DELETE_USER_BOOK = "/deleteBook";
+        final String GET_ALL_USER_BOOK = "/getAllBook";
+        final String UPDATE_USER_BOOK = "/updateBook";
+
         String action = request.getServletPath();
-        Integer bookId = Integer.parseInt(request.getParameter("id"));
-
-        String title = request.getParameter("txt_title");
-        String author = request.getParameter("txt_author");
-        Book book=new Book(title,author);
-
+        Book book;
+        Integer bookId;
         try {
             switch (action) {
                 case ADD_USER_BOOK:
+                    book = getBookFromJsp(request);
                     dao.create(book);
                     break;
                 case DELETE_USER_BOOK:
+                    bookId = getBookIdFromJsp(request);
                     dao.delete(bookId);
                     break;
                 case GET_ALL_USER_BOOK:
                     dao.getAll();
                     break;
                 case UPDATE_USER_BOOK:
+                    bookId = getBookIdFromJsp(request);
                     dao.update(bookId);
                     break;
             }
-        } catch (PersistException persistException) {
-            throw new ServletException(persistException);
+        } catch (PersistException exception) {
+            throw new ServletException(exception);
         }
     }
 
-    private String getUserEmail(HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        return (String) session.getAttribute("login");
-        //  int bookId =Integer.parseInt(request.getParameter("id"));
+    private Book getBookFromJsp(HttpServletRequest request) {
+        String title = request.getParameter("txt_title");
+        String author = request.getParameter("txt_author");
+        return new Book(title, author);
     }
 
-    public static int getUserId(Connection connection, String email) throws SQLException {
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT id FROM USER WHERE email='" + email + "';");
-        resultSet.next();
-        return resultSet.getInt(1);
+    private Integer getBookIdFromJsp(HttpServletRequest request) {
+        return Integer.parseInt(request.getParameter("id"));
     }
 }

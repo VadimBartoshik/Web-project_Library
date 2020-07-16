@@ -69,5 +69,14 @@ public class MySqlBookDao extends BaseJDBCDao<Book, Integer> {
             throw new PersistException(exception);
         }
     }
+
+    @Override
+    protected void prepareStatementForDelete(PreparedStatement statement, Integer key) throws PersistException {
+        try {
+            statement.setInt(1, key);
+        } catch (SQLException exception) {
+            throw new PersistException(exception);
+        }
+    }
 }
 

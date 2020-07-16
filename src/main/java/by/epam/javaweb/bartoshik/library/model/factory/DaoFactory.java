@@ -9,17 +9,17 @@ import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
  */
 public interface DaoFactory<Context> {
 
-    public interface DaoCreator<Context> {
-        public BaseDao create(Context context);
+     interface DaoCreator<Context> {
+         BaseDao create(Context context);
     }
 
     /**
      * Возвращает подключение к базе данных
      */
-    public Context getContext() throws PersistException;
+     Context getContext() throws PersistException;
 
     /**
      * Возвращает объект для управления персистентным состоянием объекта
      */
-    public BaseDao getDao(Context context, Class dtoClass) throws PersistException;
+     BaseDao getDao(Context context, Class dtoClass) throws PersistException;
 }
