@@ -36,15 +36,7 @@ public class LoginDao {
             throwable.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        }  catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return "WRONG USERNAME AND PASSWORD";

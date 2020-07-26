@@ -16,7 +16,7 @@
 <style>
     <%@include file='css/style take.css' %>
 </style>
-<p><img src="image/takeBook.jpg" alt="takeBook"></p>
+<p><img src="image/take.jpg" alt="takeBook"></p>
 <center>
     <header>
     <h1>Take a book</h1>

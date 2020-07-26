@@ -18,8 +18,10 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        logger.info("LoginBookController servlet started");
+        String action=request.getServletPath();
+        logger.info(action);
 
-        if (request.getParameter("btn_login") != null) {
             String email = request.getParameter("txt_email");
             String password = request.getParameter("txt_password");
 
@@ -31,7 +33,7 @@ public class LoginController extends HttpServlet {
             LoginDao loginDao = new LoginDao();
 
             String authorize = loginDao.authorizeLogin(loginBean);
-            logger.info(authorize);
+
             if (authorize.equals("SUCCESS LOGIN")) {
                 HttpSession session = request.getSession();
                 session.setAttribute("login", loginBean.getEmail());
@@ -44,5 +46,4 @@ public class LoginController extends HttpServlet {
                 requestDispatcher.include(request, response);
             }
         }
-    }
 }

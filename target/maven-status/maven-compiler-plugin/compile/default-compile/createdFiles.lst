@@ -5,12 +5,14 @@ by\epam\javaweb\bartoshik\library\controller\TakeController.class
 by\epam\javaweb\bartoshik\library\controller\BuyController.class
 by\epam\javaweb\bartoshik\library\model\entity\User.class
 by\epam\javaweb\bartoshik\library\model\TakeDao.class
+by\epam\javaweb\bartoshik\library\model\ReturnDao.class
 by\epam\javaweb\bartoshik\library\model\dao\base\Identified.class
 by\epam\javaweb\bartoshik\library\model\dao\base\GenericDao.class
 by\epam\javaweb\bartoshik\library\model\dao\MySqlBookDao$PersistBook.class
 by\epam\javaweb\bartoshik\library\controller\RegisterController.class
 by\epam\javaweb\bartoshik\library\model\entity\LoginBean.class
 by\epam\javaweb\bartoshik\library\connection\ConnectionCreator.class
+by\epam\javaweb\bartoshik\library\controller\ReturnController.class
 by\epam\javaweb\bartoshik\library\model\entity\Book.class
 by\epam\javaweb\bartoshik\library\controller\Controller.class
 by\epam\javaweb\bartoshik\library\model\RegisterDao.class

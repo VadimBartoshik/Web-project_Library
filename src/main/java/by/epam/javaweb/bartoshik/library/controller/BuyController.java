@@ -21,20 +21,17 @@ public class BuyController extends HttpServlet {
 @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        logger.info("BuyController servlet started");
-        request.setCharacterEncoding("UTF-8");
+             logger.info("BuyBookController servlet started");
+             String action=request.getServletPath();
+             logger.info(action);
+             request.setCharacterEncoding("UTF-8");
             try {
-                HttpSession session = request.getSession();
-                String s=(String) session.getAttribute("login");
-                logger.info("sessionID="+s);
-                logger.info("begin method");
+
                 int bookId =Integer.parseInt(request.getParameter("id"));
-                logger.info(bookId);
                 BuyDao.buyBook(ConnectionCreator.getConnection(), bookId);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcome.jsp");
                 requestDispatcher.forward(request, response);
             } catch (Exception ex) {
-                logger.info("Error BuyController servlet");
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("buy.jsp");
                 requestDispatcher.forward(request, response);
             }

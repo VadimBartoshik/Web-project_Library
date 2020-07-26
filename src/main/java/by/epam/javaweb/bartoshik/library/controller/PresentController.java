@@ -18,14 +18,14 @@ public class PresentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        logger.info("PresentController method started");
+        logger.info("PresentBookController servlet started");
+        String action=request.getServletPath();
+        logger.info(action);
         request.setCharacterEncoding("UTF-8");
         if (request.getParameter("btn_present") != null) //check button click event not null from add.jsp page after continue
         {
             String title = request.getParameter("txt_title");
             String author = request.getParameter("txt_author");
-            logger.info(title);
-            logger.info(title);
             PresentBean presentBean = new PresentBean();
 
             presentBean.setTitle(title);
@@ -34,7 +34,7 @@ public class PresentController extends HttpServlet {
             PresentDao presentDao = new PresentDao();
 
             String insertValidate = presentDao.checkInsert(presentBean);
-            logger.info(insertValidate);
+
             if (insertValidate.equals("INSERT SUCCESS")) //check calling checkInsert() function receive string "INSERT SUCCESS" after redirect to index.jsp page and display record
             {
                 request.setAttribute("InsertSuccessMsg", insertValidate); //setAttribute value is "InsertSuccessMsg" for insert successfully message

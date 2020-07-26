@@ -42,15 +42,7 @@ public class RegisterDao {
         } catch (SQLException throwable) {
             logger.info("SQLException");
             throwable.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        }  catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
         return "FAIL";

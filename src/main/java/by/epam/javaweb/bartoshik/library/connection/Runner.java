@@ -1,5 +1,6 @@
 package by.epam.javaweb.bartoshik.library.connection;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
 
@@ -8,8 +9,7 @@ import static by.epam.javaweb.bartoshik.library.connection.ConnectionCreator.get
 public class Runner {
     public static void main(String[] args) {
         try {
-
-            takeBook(ConnectionCreator.getConnection(),7,"masha@gmail.com");
+            takeBook(ConnectionCreator.getConnection(),4,"vadim@gmail.com");
             System.out.println("Connection to Store DB success full!");
 
         } catch (Exception ex) {

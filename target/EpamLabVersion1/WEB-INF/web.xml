@@ -54,4 +54,14 @@
     <url-pattern>/TakeController</url-pattern>
   </servlet-mapping>
 
+  <servlet>
+    <servlet-name>ReturnServlet</servlet-name>
+    <servlet-class>by.epam.javaweb.bartoshik.library.controller.ReturnController</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>ReturnServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
 </web-app>

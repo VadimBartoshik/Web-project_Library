@@ -21,22 +21,22 @@ public class TakeController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         logger.info("TakeBookController servlet started");
-        request.setCharacterEncoding("UTF-8");
-        try {
-            logger.info("begin method doPost");
-            HttpSession session = request.getSession();
-            String userEmail=(String) session.getAttribute("login");
-            int bookId =Integer.parseInt(request.getParameter("id"));
-            logger.info(userEmail);
-            logger.info(bookId);
-            TakeDao.takeBook(ConnectionCreator.getConnection(), bookId, userEmail);
-            logger.info("dataBase success");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcome.jsp");
-            requestDispatcher.forward(request, response);
-        } catch (Exception ex) {
-            logger.info("Error TakeBookController servlet");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("take.jsp");
-            requestDispatcher.forward(request, response);
-        }
+        String action=request.getServletPath();
+        logger.info(action);
+
+            request.setCharacterEncoding("UTF-8");
+            try {
+                HttpSession session = request.getSession();
+                String userEmail = (String) session.getAttribute("login");
+                int bookId = Integer.parseInt(request.getParameter("id"));
+                TakeDao.takeBook(ConnectionCreator.getConnection(), bookId, userEmail);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcome.jsp");
+                requestDispatcher.forward(request, response);
+            } catch (Exception ex) {
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("take.jsp");
+                requestDispatcher.forward(request, response);
+            }
     }
+
+
 }
