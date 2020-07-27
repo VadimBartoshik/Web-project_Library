@@ -1,7 +1,7 @@
 package by.epam.javaweb.bartoshik.library.model;
 
-import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
 import by.epam.javaweb.bartoshik.library.model.entity.Book;
+import by.epam.javaweb.bartoshik.library.trash.ConnectionCreator;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

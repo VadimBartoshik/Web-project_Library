@@ -1,4 +1,10 @@
-
+<%@ page pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fun" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@include file="language.jsp" %>
+<jsp:include page="header.jsp"></jsp:include>
 <!DOCTYPE html>
 <html>
  <style>
@@ -67,21 +73,21 @@
 <body>
     <div class="main-content">
         <p><img src="image/registerImage.jpg" alt="register"></p>
-        <form class="form-register" method="post" action="RegisterController" onsubmit="return validate();">
+        <form class="form-register" method="post" action="addUser" onsubmit="return validate();">
 
-            <h1>Register</h1>
+            <h1><fmt:message key="register.Register"/></h1>
 
-            <input type="text" name="txt_firstName" id="fname" placeholder="enter firstname">
+            <input type="text" name="txt_firstName" id="fname" placeholder="<fmt:message key="register.EnterFirstName"/>">
 
-            <input type="text" name="txt_lastName" id="lname" placeholder="enter lastname">
+            <input type="text" name="txt_lastName" id="lname" placeholder="<fmt:message key="register.EnterLastName"/>">
 
-            <input type="text" name="txt_email" id="email" placeholder="enter email">
+            <input type="text" name="txt_email" id="email" placeholder="<fmt:message key="register.EnterEmail"/>">
 
-            <input type="password" name="txt_password" id="password" placeholder="enter password">
+            <input type="password" name="txt_password" id="password" placeholder="<fmt:message key="register.EnterPassword"/>">
 
-		    <input type="submit" name="btn_register" value="Register">
+		    <input type="submit" name="btn_register" value="<fmt:message key="register.Register"/>">
 				
-            <a href="index.jsp" class="form-log-in-with-existing">Already have an account? <b> Login here </b></a>
+            <a href="index.jsp" class="form-log-in-with-existing"><fmt:message key="register.AlreadyHaveAnAccount"/> <b> Login here </b></a>
 
         </form>
 

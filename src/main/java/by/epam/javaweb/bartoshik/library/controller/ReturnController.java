@@ -1,8 +1,7 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
-import by.epam.javaweb.bartoshik.library.connection.ConnectionCreator;
-import by.epam.javaweb.bartoshik.library.model.BuyDao;
 import by.epam.javaweb.bartoshik.library.model.ReturnDao;
+import by.epam.javaweb.bartoshik.library.trash.ConnectionCreator;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
