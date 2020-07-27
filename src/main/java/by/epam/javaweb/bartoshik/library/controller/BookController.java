@@ -49,18 +49,20 @@ public class BookController extends HttpServlet {
                 case ADD_BOOK:
                     book = getBookFromJsp(request);
                     dao.create(book);
+                    requestDispatcher = request.getRequestDispatcher("present.jsp");
+                    requestDispatcher.forward(request, response);
                     break;
                 case DELETE_BOOK:
                     bookId = getBookIdFromJsp(request);
+                    logger.info(bookId);
                     dao.delete(bookId);
+                    requestDispatcher = request.getRequestDispatcher("buy.jsp");
+                    requestDispatcher.forward(request, response);
                     break;
                 case GET_ALL_BOOK:
-                    logger.info("GET_ALL_BOOK begin");
                     request.setAttribute("books", dao.getAll());
                     requestDispatcher = request.getRequestDispatcher("getAll.jsp");
                     requestDispatcher.forward(request, response);
-                    logger.info("GET_ALL_BOOK finish");
-
                     break;
                 case UPDATE_BOOK:
                     bookId = getBookIdFromJsp(request);

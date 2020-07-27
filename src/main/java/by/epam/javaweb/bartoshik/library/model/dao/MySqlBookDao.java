@@ -26,17 +26,17 @@ public class MySqlBookDao extends BaseJDBCDao<Book, Integer> {
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE book SET userId = null WHERE id = ?;";
+        return "UPDATE book SET userId = null WHERE id =?;";
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM book WHERE id= ?;";
+        return "DELETE FROM book WHERE id=?;";
     }
 
     @Override
     protected List<Book> parseResultSet(ResultSet rs) throws PersistException {
-        logger.info("parseResultSet method begin");
+
         List<Book> result = new ArrayList<>();
         try {
             while (rs.next()) {
@@ -44,14 +44,9 @@ public class MySqlBookDao extends BaseJDBCDao<Book, Integer> {
                 book.setId(rs.getInt("id"));
                 book.setTitle(rs.getString("title"));
                 book.setAuthor(rs.getString("author"));
-
-                logger.info(book.getId());
-                logger.info(book.getTitle());
-                logger.info(book.getAuthor());
                 result.add(book);
             }
         } catch (SQLException exception) {
-            logger.info("SQLException in SQLException method ");
             throw new PersistException(exception);
         }
         return result;

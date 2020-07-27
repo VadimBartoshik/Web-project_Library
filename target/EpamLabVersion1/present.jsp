@@ -12,7 +12,7 @@
 </style>
 <div class="main">
     <p><img src="image/presentBookImage.jpg" alt="presentBook"></p>
-    <form class="presentBook-form" method="post" name="presentForm" action="PresentController" onsubmit="return validate();">
+    <form class="presentBook-form" method="post" name="presentForm" action="addBook" >
 
             <h1>Present book</h1>
         <input type="text" name="txt_title" placeholder="enter title">

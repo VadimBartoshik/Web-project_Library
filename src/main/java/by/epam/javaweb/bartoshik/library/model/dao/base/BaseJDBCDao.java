@@ -117,15 +117,20 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
 
     @Override
     public void delete(PK key) throws PersistException {
+
         String sql = getDeleteQuery();
+
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
+
             try {
                 prepareStatementForDelete(statement, key);
-                statement.execute(sql);
+                statement.executeUpdate();
             } catch (Exception e) {
+
                 throw new PersistException(e);
             }
         } catch (Exception e) {
+
             throw new PersistException(e);
         }
     }

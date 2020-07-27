@@ -25,23 +25,23 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>PresentServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.trash.PresentController</servlet-class>
+        <servlet-name>AddBookServlet</servlet-name>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>PresentServlet</servlet-name>
-        <url-pattern>/PresentController</url-pattern>
+        <servlet-name>AddBookServlet</servlet-name>
+        <url-pattern>/addBook</url-pattern>
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>BuyServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.trash.BuyController</servlet-class>
+        <servlet-name>DeleteBookServlet</servlet-name>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>BuyServlet</servlet-name>
-        <url-pattern>/BuyController</url-pattern>
+        <servlet-name>DeleteBookServlet</servlet-name>
+        <url-pattern>/deleteBook</url-pattern>
     </servlet-mapping>
 
 

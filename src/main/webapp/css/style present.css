@@ -3,7 +3,7 @@
 
 
 body{
-    background-color: #3498db;
+    background-color: #e74bc5;
 }
 
 .presentBook-form{
@@ -14,7 +14,6 @@ body{
     left: 50%;
     transform: translate(-50%,-50%);
     background: #191919;
-    opacity: 0.7;
     filter: alpha(Opacity=70);
     text-align: center;
     color :#FFFFFF;
@@ -26,12 +25,12 @@ body{
     font-weight: 500;
 }
 
-.presentBook-form input[type="text"],.presentBook-form input[type="password"]{
+.presentBook-form input[type="text"]{
     background: none;
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #3498db;
+    border: 2px solid #6e17b6;
     padding: 14px 10px;
     width: 200px;
     outline: none;
@@ -42,9 +41,9 @@ body{
 
 
 
-.presentBook-form input[type="text"]:focus,.presentBook-form input[type="password"]:focus{
+.presentBook-form input[type="text"]:focus{
     width: 280px;
-    border-color: #66cdfc;
+    border-color: #e74bc5;
 }
 
 .presentBook-form input[type="submit"]{
@@ -52,7 +51,7 @@ body{
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #3498db;
+    border: 2px solid #f663d4;
     padding: 14px 40px;
     outline: none;
     color: white;
@@ -62,19 +61,19 @@ body{
 }
 
 .presentBook-form input[type="submit"]:hover{
-    color: #0d4375;
-    background: #1f8bf0;
-    box-shadow: 0 0 10px #1f8bf0, 0 0 40px #1f8bf0, 0 0 80px #1f8bf0;
-    border: 2px solid #1f8bf0;
+    color: #2d0653;
+    background: #f663d4;
+    box-shadow: 0 0 10px #f663d4, 0 0 40px #f663d4, 0 0 80px #f663d4;
+    border: 2px solid #6c08a1;
 }
 
 a.back{
-    color: #66cdfc;
+    color: white;
 }
 a.back:hover{
-    color: #0d4375;
-    background: #9edcf9;
-    box-shadow: 0 0 10px #9edcf9, 0 0 40px #9edcf9, 0 0 80px #9edcf9;
+    color: #2d0653;
+    background: #f663d4;
+    box-shadow: 0 0 10px #f663d4, 0 0 40px #f663d4, 0 0 80px #f663d4;
 }
 
 p{

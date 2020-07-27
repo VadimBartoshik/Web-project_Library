@@ -17,7 +17,6 @@
       <body>
 
       <center>
-
           <p><img src="image/loginImage.jpg" alt="loginImage"></p>
       </center>
 
