@@ -4,7 +4,7 @@
 <%@taglib prefix="fun" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="language.jsp" %>
-<jsp:include page="header.jsp"></jsp:include>
+
 <!DOCTYPE html>
 <html>
  <style>
@@ -73,6 +73,9 @@
 <body>
     <div class="main-content">
         <p><img src="image/registerImage.jpg" alt="register"></p>
+        <header>
+            <jsp:include page="header.jsp"></jsp:include>
+        </header>
         <form class="form-register" method="post" action="addUser" onsubmit="return validate();">
 
             <h1><fmt:message key="register.Register"/></h1>
@@ -87,7 +90,7 @@
 
 		    <input type="submit" name="btn_register" value="<fmt:message key="register.Register"/>">
 				
-            <a href="index.jsp" class="form-log-in-with-existing"><fmt:message key="register.AlreadyHaveAnAccount"/> <b> Login here </b></a>
+            <a href="index.jsp" class="form-log-in-with-existing"><fmt:message key="register.AlreadyHaveAnAccount"/> <b> <fmt:message key="register.LoginHere"/> </b></a>
 
         </form>
 

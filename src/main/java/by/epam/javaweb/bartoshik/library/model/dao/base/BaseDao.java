@@ -3,6 +3,7 @@ package by.epam.javaweb.bartoshik.library.model.dao.base;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -23,4 +24,7 @@ public interface BaseDao<T extends Identified<PK>, PK extends Serializable> {
 
     /** Возвращает список объектов соответствующих всем записям в базе данных */
     public List<T> getAll() throws PersistException;
+
+    /** Возвращает id объекта соответствующего его текстовому полю*/
+    public Integer getUserId(String stringField) throws SQLException;
 }

@@ -40,7 +40,7 @@
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>
-                    <form class="take_btn" method="post" action="addBook" >
+                    <form class="take_btn" method="post" action="takeBook" >
                         <input type="hidden" name="id" value="${book.id}">
                         <input type="submit" value="Take">
                     </form>

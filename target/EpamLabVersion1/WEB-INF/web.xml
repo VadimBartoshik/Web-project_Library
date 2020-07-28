@@ -44,37 +44,14 @@
         <url-pattern>/deleteBook</url-pattern>
     </servlet-mapping>
 
-
     <servlet>
-        <servlet-name>BookController</servlet-name>
+        <servlet-name>ReturnServlet</servlet-name>
         <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>BookController</servlet-name>
-        <url-pattern>/book/</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>UserController</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.UserController</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>UserController</servlet-name>
-        <url-pattern>/user/</url-pattern>
-    </servlet-mapping>
-
-
-  <servlet>
-    <servlet-name>ReturnServlet</servlet-name>
-    <servlet-class>by.epam.javaweb.bartoshik.library.controller.ReturnController</servlet-class>
-</servlet>
-
-    <servlet-mapping>
         <servlet-name>ReturnServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/returnBook</url-pattern>
     </servlet-mapping>
 
     <servlet>
@@ -95,6 +72,16 @@
     <servlet-mapping>
         <servlet-name>GetAllServlet</servlet-name>
         <url-pattern>/getAllBook</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TakeServlet</servlet-name>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>TakeServlet</servlet-name>
+        <url-pattern>/takeBook</url-pattern>
     </servlet-mapping>
 
 </web-app>

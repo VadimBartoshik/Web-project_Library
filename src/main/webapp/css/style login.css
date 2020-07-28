@@ -60,15 +60,10 @@ body{
     box-shadow: 0 0 10px #1f8bf0, 0 0 40px #1f8bf0, 0 0 80px #1f8bf0;
     border: 2px solid #191919;
 }
-p{
-    position: absolute;
-    display: block;
-    margin: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
+header{
+    position: relative;
 }
+
 
 a.form-log-in-with-existing{
     color: #66cdfc;
@@ -79,3 +74,12 @@ a.form-log-in-with-existing:hover{
     box-shadow: 0 0 10px #9edcf9, 0 0 40px #9edcf9, 0 0 80px #9edcf9;
 }
 
+p{
+    position: absolute;
+    display: block;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}

@@ -1,13 +1,3 @@
-p{
-    position: absolute;
-    display: block;
-    margin: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-}
-
 table {
     position: relative;
     background: #dc0; /* Цвет фона таблицы */
@@ -38,3 +28,16 @@ a.back:hover{
     background: #d3e330;
     box-shadow: 0 0 10px #d3e330, 0 0 40px #d3e330, 0 0 80px #d3e330;
 }
+header{
+    position: relative;
+}
+p{
+    position: absolute;
+    display: block;
+    margin: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+}
+

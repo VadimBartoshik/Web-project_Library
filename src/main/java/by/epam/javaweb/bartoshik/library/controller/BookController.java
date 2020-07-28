@@ -14,7 +14,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class BookController extends HttpServlet {
     public static Logger logger = LogManager.getRootLogger();
@@ -32,13 +36,14 @@ public class BookController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException {
+            throws ServletException, UnsupportedEncodingException {
 
         final String ADD_BOOK = "/addBook";
         final String DELETE_BOOK = "/deleteBook";
         final String GET_ALL_BOOK = "/getAllBook";
-        final String UPDATE_BOOK = "/updateBook";
-
+        final String RETURN_BOOK = "/returnBook";
+        final String TAKE_BOOK = "/takeBook";
+        request.setCharacterEncoding("UTF-8");
         String action = request.getServletPath();
         logger.info(action);
         Book book;
@@ -64,9 +69,17 @@ public class BookController extends HttpServlet {
                     requestDispatcher = request.getRequestDispatcher("getAll.jsp");
                     requestDispatcher.forward(request, response);
                     break;
-                case UPDATE_BOOK:
+                case RETURN_BOOK:
                     bookId = getBookIdFromJsp(request);
                     dao.update(bookId);
+                    requestDispatcher = request.getRequestDispatcher("welcome.jsp");
+                    requestDispatcher.forward(request, response);
+                    break;
+                case TAKE_BOOK:
+                    bookId = getBookIdFromJsp(request);
+                    dao.update(bookId);
+                    requestDispatcher = request.getRequestDispatcher("welcome.jsp");
+                    requestDispatcher.forward(request, response);
                     break;
             }
         } catch (PersistException | IOException exception) {
@@ -83,4 +96,7 @@ public class BookController extends HttpServlet {
     private Integer getBookIdFromJsp(HttpServletRequest request) {
         return Integer.parseInt(request.getParameter("id"));
     }
+
+
+
 }

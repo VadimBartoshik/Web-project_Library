@@ -1,4 +1,3 @@
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
@@ -13,14 +12,15 @@
 </style>
 
 
-    <p><img src="image/buy.png" alt="buyBook"></p>
+<p><img src="image/buy.png" alt="buyBook"></p>
 <%--    <%--%>
 <%--        ArrayList<Book> books = BuyDao.getAllFreeBookList();--%>
 <%--        request.setAttribute("books", books);--%>
 <%--    %>--%>
 <center>
-        <h1>List of book </h1>
-    <form class="button_getAll" method="post" action="getAllBook" name="LoginForm" >
+    <header><h1>List of book </h1></header>
+
+    <form class="button_getAll" method="post" action="getAllBook" name="LoginForm">
         <input type="submit" name="btn_getAll" value="show list">
     </form>
     <table border="1">

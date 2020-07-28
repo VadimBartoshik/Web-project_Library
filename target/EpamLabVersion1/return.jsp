@@ -1,10 +1,13 @@
 <%@ page import="java.sql.Connection" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.connection.ConnectionCreator" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.model.entity.Book" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.model.BuyDao" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.model.TakeDao" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.model.ReturnDao" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.model.factory.DaoFactory" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.model.factory.MySqlDaoFactory" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.model.exeption.PersistException" %>
+<%@ page import="by.epam.javaweb.bartoshik.library.trash.ConnectionCreator" %>
+<%@ page import="java.sql.Statement" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html;charset=utf-8" %>
 <!DOCTYPE html>
@@ -24,8 +27,30 @@
     </header>
 
 <%
-    String userEmail = (String) session.getAttribute("login");
-    ArrayList<Book> books = ReturnDao.getAllUserBookList(userEmail);
+    BaseDao dao = null;
+    DaoFactory<Connection> factory = new MySqlDaoFactory();
+    try {
+        Connection connection = factory.getContext();
+        dao = factory.getDao(connection, Book.class);
+    } catch (PersistException e) {
+        e.printStackTrace();
+    }
+    ArrayList<Book> books = new ArrayList<>();
+
+    try (Connection connection = ConnectionCreator.getConnection()) {
+
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT id, title, author FROM book WHERE userId =" + dao.getUserId((String)session.getAttribute("login"))+ ";");
+        while (resultSet.next()) {
+            int id = resultSet.getInt(1);
+            String title = resultSet.getString(2);
+            String author = resultSet.getString(3);
+            Book book = new Book(id, title, author);
+            books.add(book);
+        }
+    } catch (Exception ex) {
+        System.out.println(ex);
+    }
     request.setAttribute("books", books);
 %>
 
@@ -42,7 +67,7 @@
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>
-                    <form class="take_btn" method="post" action="ReturnController" >
+                    <form class="take_btn" method="post" action="returnBook" >
                         <input type="hidden" name="id" value="${book.id}">
                         <input type="submit" value="Return">
                     </form>

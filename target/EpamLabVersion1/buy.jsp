@@ -18,20 +18,21 @@
 </style>
 
 
-    <p><img src="image/buy.png" alt="buyBook"></p>
-    <%
-        BaseDao dao = null;
-        DaoFactory<Connection> factory = new MySqlDaoFactory();
-        try {
-            Connection connection = factory.getContext();
-            dao = factory.getDao(connection, Book.class);
-        } catch (PersistException e) {
-            e.printStackTrace();
-        }
-        request.setAttribute("books", dao.getAll());
-    %>
+<p><img src="image/buy.png" alt="buyBook"></p>
+<%
+    BaseDao dao = null;
+    DaoFactory<Connection> factory = new MySqlDaoFactory();
+    try {
+        Connection connection = factory.getContext();
+        dao = factory.getDao(connection, Book.class);
+    } catch (PersistException e) {
+        e.printStackTrace();
+    }
+    request.setAttribute("books", dao.getAll());
+%>
 <center>
-        <h1>List of book </h1>
+    <header><h1>List of book </h1></header>
+
     <table border="1">
         <tr>
             <th>title</th>
@@ -44,7 +45,7 @@
                 <td>${book.title}</td>
                 <td>${book.author}</td>
                 <td>
-                    <form class="buy_btn" method="post" action="deleteBook" >
+                    <form class="buy_btn" method="post" action="deleteBook">
                         <input type="hidden" name="id" value="${book.id}">
                         <input type="submit" value="Buy">
                     </form>
