@@ -12,7 +12,7 @@
 </style>
 
 
-<p><img src="image/buy.png" alt="buyBook"></p>
+<p><img src="image/getAllImage.jpeg" alt="buyBook"></p>
 <%--    <%--%>
 <%--        ArrayList<Book> books = BuyDao.getAllFreeBookList();--%>
 <%--        request.setAttribute("books", books);--%>

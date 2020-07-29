@@ -1,4 +1,6 @@
-
+body{
+    background-color: #55c7d7;
+}
 
 table {
     position: relative;
@@ -16,11 +18,11 @@ table tbody tr td:hover {
 }
 
 .button_getAll input[type="submit"]{
-    background: none;
+    background: rgba(85, 199, 215, 0.93);
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px solid #55c7d7;
+    border: 2px solid #191919;
     padding: 14px 40px;
     outline: none;
     color: black;
@@ -38,7 +40,8 @@ table tbody tr td:hover {
 
 a.back{
     position: relative;
-    color: #2f2f38;
+    color: white;
+    background-color: black;
 }
 
 a.back:hover{
@@ -47,12 +50,9 @@ a.back:hover{
     box-shadow: 0 0 10px #55c7d7, 0 0 40px #55c7d7, 0 0 80px #55c7d7;
 }
 
-
-body{
-    background-color: #A9A9A9;
-}
 header{
     position: relative;
+    background-color: rgba(255, 255, 255, 0.9);
 }
 
 p{
