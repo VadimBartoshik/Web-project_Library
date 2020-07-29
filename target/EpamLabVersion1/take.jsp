@@ -1,9 +1,6 @@
 <%@ page import="java.sql.Connection" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.trash.ConnectionCreator" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.model.entity.Book" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.trash.BuyDao" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.trash.TakeDao" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.model.factory.DaoFactory" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.model.factory.MySqlDaoFactory" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao" %>
@@ -39,7 +36,7 @@
     }
     ArrayList<Book> books = new ArrayList<>();
 
-    try (Connection connection = ConnectionCreator.getConnection()) {
+    try (Connection connection = factory.getContext();) {
 
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT id, title, author FROM book WHERE userId is null;");

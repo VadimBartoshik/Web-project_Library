@@ -1,5 +1,6 @@
 package by.epam.javaweb.bartoshik.library.model.dao.base;
 
+import by.epam.javaweb.bartoshik.library.model.entity.User;
 import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 import org.apache.log4j.LogManager;
@@ -15,6 +16,9 @@ import java.util.List;
  * @param <PK> тип первичного ключа
  */
 public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> implements BaseDao<T, PK> {
+    private static final String AUTHORIZE_LOGIN = "select * from user where email=? and password=?";
+    private static final String SUCCESS = "SUCCESS LOGIN";
+    private static final String WRONG = "WRONG USERNAME AND PASSWORD";
     private DaoFactory<Connection> parentFactory;
     private Connection connection;
     public static Logger logger = LogManager.getRootLogger();
@@ -63,14 +67,20 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
     protected abstract void prepareStatementForInsert(PreparedStatement statement, T object) throws PersistException;
 
     /**
-     * Устанавливает аргументы update запроса в соответствии со значением полей объекта object.
+     * Устанавливает аргументы update запроса в соответствии со значением полей key and secondKey.
      */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, String key, PK secondKey) throws PersistException;
 
     /**
-     * Устанавливает аргументы delete запроса в соответствии со значением полей объекта object.
+     * Устанавливает аргументы delete запроса в соответствии со значением полей объекта key.
      */
     protected abstract void prepareStatementForDelete(PreparedStatement statement, PK key) throws PersistException;
+
+//    /**
+//     * Устанавливает аргументы AuthorizeLogin запроса в соответствии со значением полей email and password.
+//     */
+//    protected abstract void prepareStatementForAuthorizeLogin(PreparedStatement statement, String email, String password) throws PersistException;
+
 
     @Override
     public List<T> getAll() throws PersistException {
@@ -146,5 +156,37 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
         }
     }
 
+    @Override
+    public String authorizeLogin(User user) throws PersistException {
+        String bdEmail = "";
+        String bdPassword = "";
+        String email = user.getEmail();
+        String password = user.getPassword();
+        String sql = AUTHORIZE_LOGIN;
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            prepareStatementForAuthorizeLogin(statement, email, password);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                bdEmail = resultSet.getString("email");
+                bdPassword = resultSet.getString("password");
+                if (email.equals(bdEmail) && password.equals(bdPassword)) ;
+                {
+                    return SUCCESS;
+                }
+            }
 
+        } catch (SQLException | PersistException ex) {
+            throw new PersistException(ex);
+        }
+        return WRONG;
+    }
+
+    protected void prepareStatementForAuthorizeLogin(PreparedStatement statement, String email, String password) throws PersistException {
+        try {
+            statement.setString(1, email);
+            statement.setString(2, password);
+        } catch (SQLException exception) {
+            throw new PersistException(exception);
+        }
+    }
 }

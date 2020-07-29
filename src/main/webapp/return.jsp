@@ -5,7 +5,6 @@
 <%@ page import="by.epam.javaweb.bartoshik.library.model.factory.DaoFactory" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.model.factory.MySqlDaoFactory" %>
 <%@ page import="by.epam.javaweb.bartoshik.library.model.exeption.PersistException" %>
-<%@ page import="by.epam.javaweb.bartoshik.library.trash.ConnectionCreator" %>
 <%@ page import="java.sql.Statement" %>
 <%@ page import="java.sql.ResultSet" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -37,7 +36,7 @@
     }
     ArrayList<Book> books = new ArrayList<>();
 
-    try (Connection connection = ConnectionCreator.getConnection()) {
+    try (Connection connection = factory.getContext();) {
 
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT id, title, author FROM book WHERE userId =" + dao.getUserId((String)session.getAttribute("login"))+ ";");

@@ -19,6 +19,11 @@ public class User implements Identified<Integer> {
         this.password = password;
     }
 
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
     @Override
     public Integer getId() {
         return id;

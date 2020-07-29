@@ -7,11 +7,14 @@ import by.epam.javaweb.bartoshik.library.model.entity.Book;
 import by.epam.javaweb.bartoshik.library.model.entity.User;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 public class MySqlDaoFactory implements DaoFactory<Connection> {
     private final String USER = "root";
@@ -21,13 +24,19 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
     private Map<Class, DaoCreator> creators;
 
     public Connection getContext() throws PersistException {
-        Connection connection = null;
         try {
-            connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        } catch (SQLException e) {
+            Properties properties = new Properties ();
+            InputStream input = MySqlDaoFactory.class.getResourceAsStream("/database.properties");
+            properties.load(input);
+            String driverName= (String) properties.get ("driverName");
+            String url= (String) properties.get ("url");
+            String userName= (String) properties.get ("userName");
+            String password= (String) properties.get ("password");
+            Class.forName(driverName);
+            return DriverManager.getConnection(url, userName, password);
+        } catch (ClassNotFoundException | IOException | SQLException e) {
             throw new PersistException(e);
         }
-        return connection;
     }
 
     @Override

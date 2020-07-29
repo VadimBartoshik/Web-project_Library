@@ -13,10 +13,7 @@
 
 
 <p><img src="image/getAllImage.jpeg" alt="buyBook"></p>
-<%--    <%--%>
-<%--        ArrayList<Book> books = BuyDao.getAllFreeBookList();--%>
-<%--        request.setAttribute("books", books);--%>
-<%--    %>--%>
+
 <center>
     <header><h1>List of book </h1></header>
 

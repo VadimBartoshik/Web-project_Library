@@ -1,7 +1,11 @@
 package by.epam.javaweb.bartoshik.library.controller;
 
-import by.epam.javaweb.bartoshik.library.trash.LoginBean;
-import by.epam.javaweb.bartoshik.library.trash.LoginDao;
+import by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao;
+import by.epam.javaweb.bartoshik.library.model.entity.Book;
+import by.epam.javaweb.bartoshik.library.model.entity.User;
+import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
+import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
+import by.epam.javaweb.bartoshik.library.model.factory.MySqlDaoFactory;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -12,34 +16,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Connection;
 
 public class LoginController extends HttpServlet {
     public static Logger logger = LogManager.getRootLogger();
+    private BaseDao dao;
+
+    public void init() {
+        DaoFactory<Connection> factory = new MySqlDaoFactory();
+        try {
+            Connection connection = factory.getContext();
+            dao = factory.getDao(connection, Book.class);
+        } catch (PersistException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        logger.info("LoginBookController servlet started");
-        String action = request.getServletPath();
-        logger.info(action);
+        try {
+            User user = getUserFromJsp(request);
 
-        if (request.getParameter("btn_login") != null) {
+            String authorize = null;
 
-            String email = request.getParameter("txt_email");
-            String password = request.getParameter("txt_password");
+            authorize = dao.authorizeLogin(user);
 
-            LoginBean loginBean = new LoginBean();
-
-            loginBean.setEmail(email);
-            loginBean.setPassword(password);
-
-            LoginDao loginDao = new LoginDao();
-
-            String authorize = loginDao.authorizeLogin(loginBean);
 
             if (authorize.equals("SUCCESS LOGIN")) {
                 HttpSession session = request.getSession();
-                session.setAttribute("login", loginBean.getEmail());
+                session.setAttribute("login", user.getEmail());
 
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcome.jsp");
                 requestDispatcher.forward(request, response);
@@ -49,5 +55,15 @@ public class LoginController extends HttpServlet {
                 requestDispatcher.include(request, response);
             }
         }
+         catch (PersistException | IOException exception) {
+            throw new ServletException(exception);
+        }
+    }
+
+
+    private User getUserFromJsp(HttpServletRequest request) {
+        String email = request.getParameter("txt_email");
+        String password = request.getParameter("txt_password");
+        return new User(email, password);
     }
 }

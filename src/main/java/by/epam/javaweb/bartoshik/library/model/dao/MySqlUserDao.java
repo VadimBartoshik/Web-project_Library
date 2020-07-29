@@ -43,6 +43,8 @@ public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
         return GET_DELETE_QUERY;
     }
 
+
+
     @Override
     protected List<User> parseResultSet(ResultSet rs) throws PersistException {
         List<User> result = new ArrayList<>();
@@ -87,6 +89,8 @@ public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
             throw new PersistException(exception);
         }
     }
+
+
 
 
 }
