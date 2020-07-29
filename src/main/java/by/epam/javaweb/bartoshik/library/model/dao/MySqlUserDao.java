@@ -14,28 +14,33 @@ import java.util.List;
 
 public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
 
+    public static final String GET_SELECT_QUERY = "SELECT firstName, lastName, email FROM user;";
+    public static final String GET_CREATE_QUERY = "INSERT INTO user (firstName, lastName, email, password) VALUES (?, ?, ?, ?);";
+    public static final String GET_UPDATE_QUERY = "UPDATE daotalk.Group SET number= ?, department = ? WHERE id= ?;";
+    public static final String GET_DELETE_QUERY = "DELETE FROM user WHERE id= ?;";
+
     public MySqlUserDao(DaoFactory<Connection> parentFactory, Connection connection) {
         super(parentFactory, connection);
     }
 
     @Override
     public String getSelectQuery() {
-        return "SELECT firstName, lastName, email FROM user;";
+        return GET_SELECT_QUERY;
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO user (firstName, lastName, email, password) VALUES (?, ?, ?, ?);";
+        return GET_CREATE_QUERY;
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE daotalk.Group SET number= ?, department = ? WHERE id= ?;";
+        return GET_UPDATE_QUERY;
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM user WHERE id= ?;";
+        return GET_DELETE_QUERY;
     }
 
     @Override
@@ -69,6 +74,12 @@ public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
     }
 
     @Override
+    protected void prepareStatementForUpdate(PreparedStatement statement, String key, Integer secondKey) throws PersistException {
+
+    }
+
+
+    @Override
     protected void prepareStatementForDelete(PreparedStatement statement, Integer key) throws PersistException {
         try {
             statement.setInt(1, key);
@@ -77,8 +88,5 @@ public class MySqlUserDao extends BaseJDBCDao<User, Integer> {
         }
     }
 
-    @Override
-    protected void prepareStatementForUpdate(PreparedStatement statement, Integer key) throws PersistException {
 
-    }
 }

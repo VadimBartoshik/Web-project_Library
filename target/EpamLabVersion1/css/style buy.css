@@ -30,6 +30,7 @@ a.back:hover{
 }
 header{
     position: relative;
+    background-color: rgba(255, 255, 255, 0.71);
 }
 p{
     position: absolute;

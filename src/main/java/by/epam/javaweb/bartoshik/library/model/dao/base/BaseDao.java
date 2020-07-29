@@ -17,7 +17,7 @@ public interface BaseDao<T extends Identified<PK>, PK extends Serializable> {
     public void create(T object) throws PersistException;
 
     /** Сохраняет состояние объекта в базе данных */
-    public void update(PK key) throws PersistException;
+    public void update(PK key, String stringField) throws PersistException;
 
     /** Удаляет запись об объекте из базы данных */
     public void delete(PK key) throws PersistException;
@@ -26,5 +26,5 @@ public interface BaseDao<T extends Identified<PK>, PK extends Serializable> {
     public List<T> getAll() throws PersistException;
 
     /** Возвращает id объекта соответствующего его текстовому полю*/
-    public Integer getUserId(String stringField) throws SQLException;
+    public Integer getUserId(String stringField) throws PersistException;
 }

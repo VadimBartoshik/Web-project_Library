@@ -65,7 +65,7 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
     /**
      * Устанавливает аргументы update запроса в соответствии со значением полей объекта object.
      */
-    protected abstract void prepareStatementForUpdate(PreparedStatement statement, PK key) throws PersistException;
+    protected abstract void prepareStatementForUpdate(PreparedStatement statement, String key, PK secondKey) throws PersistException;
 
     /**
      * Устанавливает аргументы delete запроса в соответствии со значением полей объекта object.
@@ -74,17 +74,12 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
 
     @Override
     public List<T> getAll() throws PersistException {
-        logger.info("getAll method begin");
         List<T> list;
         String sql = getSelectQuery();
-        logger.info(sql);
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            logger.info("prepareStatement begin");
             ResultSet rs = statement.executeQuery();
-            logger.info("ResultSet is update");
             list = parseResultSet(rs);
         } catch (Exception exception) {
-            logger.info("Exception in getAll method");
             throw new PersistException(exception);
         }
         return list;
@@ -102,10 +97,18 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
     }
 
     @Override
-    public void update(PK key) throws PersistException {
+    public void update(PK key, String email) throws PersistException {
+        logger.info("update method started");
         String sql = getUpdateQuery();
+        logger.info(sql);
         try (PreparedStatement statement = connection.prepareStatement(sql);) {
-            prepareStatementForUpdate(statement, key);
+            logger.info("key is -" + key);
+            if (email != null) {
+                prepareStatementForUpdate(statement, getUserId(email).toString(), key);
+            } else {
+                logger.info(email);
+                prepareStatementForUpdate(statement, email, key);
+            }
             statement.execute();
         } catch (Exception e) {
             throw new PersistException(e);
@@ -122,22 +125,26 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
             try {
                 prepareStatementForDelete(statement, key);
                 statement.executeUpdate();
-            } catch (Exception e) {
+            } catch (SQLException e) {
 
                 throw new PersistException(e);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
 
             throw new PersistException(e);
         }
     }
 
-    @Override
-    public Integer getUserId(String email) throws SQLException {
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT id FROM USER WHERE email='" + email + "';");
-        resultSet.next();
-        return resultSet.getInt(1);
+    public Integer getUserId(String email) throws PersistException {
+
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery("SELECT id FROM USER WHERE email='" + email + "';");
+            resultSet.next();
+            return resultSet.getInt(1);
+        } catch (SQLException e) {
+            throw new PersistException(e);
+        }
     }
+
 
 }

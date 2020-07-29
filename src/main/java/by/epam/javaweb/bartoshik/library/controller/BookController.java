@@ -16,9 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class BookController extends HttpServlet {
     public static Logger logger = LogManager.getRootLogger();
@@ -48,38 +45,33 @@ public class BookController extends HttpServlet {
         logger.info(action);
         Book book;
         Integer bookId;
-        RequestDispatcher requestDispatcher;
         try {
             switch (action) {
                 case ADD_BOOK:
                     book = getBookFromJsp(request);
                     dao.create(book);
-                    requestDispatcher = request.getRequestDispatcher("present.jsp");
-                    requestDispatcher.forward(request, response);
+                    setRequestDispatcher(request,response,"present.jsp");
                     break;
                 case DELETE_BOOK:
                     bookId = getBookIdFromJsp(request);
                     logger.info(bookId);
                     dao.delete(bookId);
-                    requestDispatcher = request.getRequestDispatcher("buy.jsp");
-                    requestDispatcher.forward(request, response);
+                    setRequestDispatcher(request,response,"buy.jsp");
                     break;
                 case GET_ALL_BOOK:
                     request.setAttribute("books", dao.getAll());
-                    requestDispatcher = request.getRequestDispatcher("getAll.jsp");
-                    requestDispatcher.forward(request, response);
+                    setRequestDispatcher(request,response,"getAll.jsp");
                     break;
                 case RETURN_BOOK:
+                    logger.info("RETURN_BOOK case started");
                     bookId = getBookIdFromJsp(request);
-                    dao.update(bookId);
-                    requestDispatcher = request.getRequestDispatcher("welcome.jsp");
-                    requestDispatcher.forward(request, response);
+                    dao.update(bookId, null);
+                    setRequestDispatcher(request,response,"return.jsp");
                     break;
                 case TAKE_BOOK:
                     bookId = getBookIdFromJsp(request);
-                    dao.update(bookId);
-                    requestDispatcher = request.getRequestDispatcher("welcome.jsp");
-                    requestDispatcher.forward(request, response);
+                    dao.update(bookId, (String) request.getSession().getAttribute("login"));
+                    setRequestDispatcher(request,response,"take.jsp");
                     break;
             }
         } catch (PersistException | IOException exception) {
@@ -97,6 +89,10 @@ public class BookController extends HttpServlet {
         return Integer.parseInt(request.getParameter("id"));
     }
 
+    private void setRequestDispatcher(HttpServletRequest request, HttpServletResponse response, String jspName) throws ServletException, IOException {
+        RequestDispatcher  requestDispatcher = request.getRequestDispatcher(jspName);
+        requestDispatcher.forward(request, response);
+    }
 
 
 }

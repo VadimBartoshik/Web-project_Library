@@ -12,8 +12,9 @@ public class Runner {
 
 
         try {
-
-            takeBook(ConnectionCreator.getConnection(),4,1);
+            String a="null";
+            Integer b = Integer.parseInt(a);
+            System.out.println(b);
 
             printAllTable(ConnectionCreator.getConnection());
 
@@ -69,6 +70,6 @@ public class Runner {
 
     public static void buyBook(Connection connection, int bookId) throws SQLException {
         Statement statement = connection.createStatement();
-        statement.execute("DELETE FROM book WHERE id = "+bookId+";");
+        statement.execute("DELETE FROM book WHERE id = " + bookId + ";");
     }
 }

@@ -26,6 +26,7 @@ public class TakeController extends HttpServlet {
             try {
                 HttpSession session = request.getSession();
                 String userEmail = (String) session.getAttribute("login");
+
                 int bookId = Integer.parseInt(request.getParameter("id"));
                 TakeDao.takeBook(ConnectionCreator.getConnection(), bookId, userEmail);
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("welcome.jsp");

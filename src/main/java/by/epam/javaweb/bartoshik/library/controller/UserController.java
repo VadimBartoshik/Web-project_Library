@@ -62,7 +62,7 @@ public class UserController extends HttpServlet {
                     break;
                 case UPDATE_USER:
                     userId = getUserIdFromJsp(request);
-                    dao.update(userId);
+                    dao.update(userId,null);
                     break;
             }
         } catch (PersistException | IOException ex) {

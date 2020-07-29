@@ -10,29 +10,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySqlBookDao extends BaseJDBCDao<Book, Integer> {
+
+    private static final String GET_UPDATE_QUERY = "UPDATE book SET userId = ? WHERE id =?;";
+    private static final String GET_SELECT_QUERY = "SELECT id, title, author FROM book;";
+    private static final String GET_CREATE_QUERY = "INSERT INTO book (title, author) VALUES (?,?);";
+    private static final String GET_DELETE_QUERY = "DELETE FROM book WHERE id=?;";
+
     public MySqlBookDao(DaoFactory<Connection> parentFactory, Connection connection) {
         super(parentFactory, connection);
     }
 
     @Override
     public String getSelectQuery() {
-        return "SELECT id, title, author FROM book;";
+        return GET_SELECT_QUERY;
     }
 
     @Override
     public String getCreateQuery() {
-        return "INSERT INTO book (title, author) VALUES (?,?);";
+        return GET_CREATE_QUERY;
     }
 
     @Override
     public String getUpdateQuery() {
-        return "UPDATE book SET userId = null WHERE id =?;";
+        return GET_UPDATE_QUERY;
     }
 
     @Override
     public String getDeleteQuery() {
-        return "DELETE FROM book WHERE id=?;";
+        return GET_DELETE_QUERY;
     }
+
+
 
     @Override
     protected List<Book> parseResultSet(ResultSet rs) throws PersistException {
@@ -63,10 +71,15 @@ public class MySqlBookDao extends BaseJDBCDao<Book, Integer> {
     }
 
     @Override
-    protected void prepareStatementForUpdate(PreparedStatement statement, Integer key) throws PersistException {
+    protected void prepareStatementForUpdate(PreparedStatement statement, String userId, Integer bookId) throws PersistException {
         try {
-            statement.setInt(1, key);
+            logger.info("prepareStatementForUpdate method started");
+            logger.info("userId is - " + userId);
+            logger.info("bookId is - " + bookId);
+            statement.setString(1, userId);
+            statement.setInt(2, bookId);
         } catch (SQLException exception) {
+            logger.info("exception in prepareStatementForUpdate method");
             throw new PersistException(exception);
         }
     }
