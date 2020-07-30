@@ -84,4 +84,20 @@
         <url-pattern>/takeBook</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>Encoder</filter-name>
+        <filter-class>by.epam.javaweb.bartoshik.library.controller.filter.Encoder</filter-class>
+        <init-param>
+            <param-name>requestEncoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Encoder</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
 </web-app>

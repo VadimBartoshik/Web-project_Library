@@ -13,6 +13,10 @@ public enum ServletPath {
         this.path = path;
     }
 
+    public String getPath() {
+        return path;
+    }
+
     @Override
     public String toString() {
         return path;

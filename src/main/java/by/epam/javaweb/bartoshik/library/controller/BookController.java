@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 
+import static by.epam.javaweb.bartoshik.library.controller.command.ServletPath.*;
 import static by.epam.javaweb.bartoshik.library.controller.command.ServletPath.ADD_BOOK;
 
 public class BookController extends HttpServlet {
@@ -35,13 +36,13 @@ public class BookController extends HttpServlet {
 //        } catch (PersistException e) {
 //            e.printStackTrace();
 //        }
-
+        logger.info("init method started");
         provider.create();
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, UnsupportedEncodingException,IOException {
+            throws ServletException, UnsupportedEncodingException, IOException {
 
 
 //        final String ADD_BOOK = "/addBook";
@@ -53,11 +54,19 @@ public class BookController extends HttpServlet {
 
         request.setCharacterEncoding("UTF-8");
         String action = request.getServletPath();
-
+        logger.info(action);
+        //provider.getCommands()
         ServletPath path = ServletPath.valueOf(action);
-        Command command = provider.getCommands().get(path);
 
-        command.execute(request, response );
+        logger.info(path);
+        Command command = provider.getCommands().get(path);
+        logger.info(command);
+
+        try {
+            command.execute(request, response);
+        } catch (PersistException e) {
+            e.printStackTrace();
+        }
 
 
         logger.info(action);

@@ -1,3 +1,4 @@
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\command\CommandProvider.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\model\dao\base\Identified.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\model\dao\MySqlBookDao.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\model\dao\MySqlUserDao.java
@@ -7,8 +8,13 @@ D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshi
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\LoginController.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\model\dao\base\BaseDao.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\BookController.java
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\command\BaseCommand.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\model\factory\DaoFactory.java
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\command\ServletPath.java
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\command\impl\AddBookCommand.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\model\dao\base\BaseJDBCDao.java
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\filter\Encoder.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\model\exeption\PersistException.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\UserController.java
 D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\model\entity\Book.java
+D:\Java\VadimProjects\Web-project_Library\src\main\java\by\epam\javaweb\bartoshik\library\controller\command\Command.java
