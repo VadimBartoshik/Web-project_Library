@@ -13,14 +13,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 
-public abstract class BaseCommand implements Command {
+public abstract class BaseCommand<T> implements Command {
     protected BaseDao dao;
 
-    public void init() {
+    public void init(T object) {
         DaoFactory<Connection> factory = new MySqlDaoFactory();
         try {
             Connection connection = factory.getContext();
-            dao = factory.getDao(connection, Book.class);
+            dao = factory.getDao(connection, (Class) object);
         } catch (PersistException e) {
             e.printStackTrace();
         }

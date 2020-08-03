@@ -43,5 +43,5 @@ public interface BaseDao<T extends Identified<PK>, PK extends Serializable> {
     /**
      * Проверяет есть ли переданный user в базе данных
      */
-    String authorizeLogin(User user) throws PersistException;
+    Boolean isAuthorizeLogin(User user) throws PersistException;
 }

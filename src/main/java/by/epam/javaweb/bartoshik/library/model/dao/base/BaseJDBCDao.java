@@ -17,8 +17,6 @@ import java.util.List;
  */
 public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> implements BaseDao<T, PK> {
     private static final String AUTHORIZE_LOGIN = "select * from user where email=? and password=?";
-    private static final String SUCCESS = "SUCCESS LOGIN";
-    private static final String WRONG = "WRONG USERNAME AND PASSWORD";
     private DaoFactory<Connection> parentFactory;
     private Connection connection;
     public static Logger logger = LogManager.getRootLogger();
@@ -50,7 +48,7 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
     public abstract String getUpdateQuery();
 
     /**
-     * Возвращает sql запрос для удаления записи из базы данных.
+     * Возвращает sql запрос для проверки авторизации из базы данных.
      * <p/>
      * DELETE FROM [Table] WHERE id= ?;
      */
@@ -108,15 +106,14 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
 
     @Override
     public void update(PK key, String email) throws PersistException {
-        logger.info("update method started");
+
         String sql = getUpdateQuery();
-        logger.info(sql);
+
         try (PreparedStatement statement = connection.prepareStatement(sql);) {
-            logger.info("key is -" + key);
             if (email != null) {
                 prepareStatementForUpdate(statement, getUserId(email).toString(), key);
             } else {
-                logger.info(email);
+
                 prepareStatementForUpdate(statement, email, key);
             }
             statement.execute();
@@ -157,28 +154,23 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
     }
 
     @Override
-    public String authorizeLogin(User user) throws PersistException {
-        String bdEmail = "";
-        String bdPassword = "";
-        String email = user.getEmail();
-        String password = user.getPassword();
+    public Boolean isAuthorizeLogin(User user) throws PersistException {
         String sql = AUTHORIZE_LOGIN;
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
-            prepareStatementForAuthorizeLogin(statement, email, password);
+            prepareStatementForAuthorizeLogin(statement, user.getEmail(), user.getPassword());
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                bdEmail = resultSet.getString("email");
-                bdPassword = resultSet.getString("password");
-                if (email.equals(bdEmail) && password.equals(bdPassword)) ;
+
+                if (user.getEmail().equals(resultSet.getString("email")) && user.getPassword().equals(resultSet.getString("password"))) ;
                 {
-                    return SUCCESS;
+                    return true;
                 }
             }
 
-        } catch (SQLException | PersistException ex) {
+        } catch (SQLException ex) {
             throw new PersistException(ex);
         }
-        return WRONG;
+        return false;
     }
 
     protected void prepareStatementForAuthorizeLogin(PreparedStatement statement, String email, String password) throws PersistException {

@@ -18,7 +18,7 @@
     <jsp:include page="header.jsp"></jsp:include>
 </header>
 
-<form class="form-register" method="post" action="LoginController" name="LoginForm" onsubmit="return validate();">
+<form class="form-register" method="post" action="authorizeLogin" name="LoginForm" onsubmit="return validate();">
 
     <h1><fmt:message key="login.Login"/></h1>
 

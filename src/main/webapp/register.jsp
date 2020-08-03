@@ -76,7 +76,7 @@
         <header>
             <jsp:include page="header.jsp"></jsp:include>
         </header>
-        <form class="form-register" method="post" action="addUser" onsubmit="return validate();">
+        <form class="form-register" method="post" action="register" onsubmit="return validate();">
 
             <h1><fmt:message key="register.Register"/></h1>
 

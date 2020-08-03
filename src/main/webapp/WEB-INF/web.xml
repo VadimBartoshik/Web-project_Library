@@ -6,27 +6,27 @@
 
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.LoginController</servlet-class>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginController</url-pattern>
+        <url-pattern>/authorizeLogin</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.UserController</servlet-class>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/addUser</url-pattern>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>AddBookServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -36,7 +36,7 @@
 
     <servlet>
         <servlet-name>DeleteBookServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -46,7 +46,7 @@
 
     <servlet>
         <servlet-name>ReturnServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -56,17 +56,17 @@
 
     <servlet>
         <servlet-name>LanguageServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.LanguageController</servlet-class>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>LanguageServlet</servlet-name>
-        <url-pattern>/LanguageController</url-pattern>
+        <url-pattern>/language</url-pattern>
     </servlet-mapping>
 
     <servlet>
         <servlet-name>GetAllServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -76,7 +76,7 @@
 
     <servlet>
         <servlet-name>TakeServlet</servlet-name>
-        <servlet-class>by.epam.javaweb.bartoshik.library.controller.BookController</servlet-class>
+        <servlet-class>by.epam.javaweb.bartoshik.library.controller.Controller</servlet-class>
     </servlet>
 
     <servlet-mapping>

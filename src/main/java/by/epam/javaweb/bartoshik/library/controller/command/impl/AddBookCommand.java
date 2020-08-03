@@ -15,7 +15,7 @@ import java.io.IOException;
 public class AddBookCommand extends BaseCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, PersistException {
-        init();
+        init(Book.class);
         Book book = getBookFromJsp(request);
         dao.create(book);
         setRequestDispatcher(request, response, "present.jsp");
