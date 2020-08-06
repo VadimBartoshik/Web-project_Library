@@ -1,7 +1,6 @@
 package by.epam.javaweb.bartoshik.library.controller.command;
 
 import by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao;
-import by.epam.javaweb.bartoshik.library.model.entity.Book;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 import by.epam.javaweb.bartoshik.library.model.factory.DaoFactory;
 import by.epam.javaweb.bartoshik.library.model.factory.MySqlDaoFactory;

@@ -5,21 +5,21 @@ import by.epam.javaweb.bartoshik.library.model.dao.base.BaseDao;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
 /**
- * Фабрика объектов для работы с базой данных
+ * Object factory for working with a database
  */
 public interface DaoFactory<Context> {
 
-     interface DaoCreator<Context> {
-         BaseDao create(Context context);
+    interface DaoCreator<Context> {
+        BaseDao create(Context context);
     }
 
     /**
-     * Возвращает подключение к базе данных
+     * Returns a database connection
      */
-     Context getContext() throws PersistException;
+    Context getContext() throws PersistException;
 
     /**
-     * Возвращает объект для управления персистентным состоянием объекта
+     * Returns an object for managing the persistent state of the object
      */
-     BaseDao getDao(Context context, Class dtoClass) throws PersistException;
+    BaseDao getDao(Context context, Class dtoClass) throws PersistException;
 }

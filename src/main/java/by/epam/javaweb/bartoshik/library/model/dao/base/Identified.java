@@ -3,10 +3,12 @@ package by.epam.javaweb.bartoshik.library.model.dao.base;
 import java.io.Serializable;
 
 /**
- * Интерфейс идентифицируемых объектов.
+ * Identifiable object interface.
  */
 public interface Identified<PK extends Serializable> {
 
-    /** Возвращает идентификатор объекта */
+    /**
+     * Returns the identifier of the object
+     */
     PK getId();
 }

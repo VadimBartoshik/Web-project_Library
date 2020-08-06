@@ -4,44 +4,43 @@ import by.epam.javaweb.bartoshik.library.model.entity.User;
 import by.epam.javaweb.bartoshik.library.model.exeption.PersistException;
 
 import java.io.Serializable;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Унифицированный интерфейс управления персистентным состоянием объектов
+ * Unified interface for managing persistent state of objects
  *
- * @param <T>  тип объекта персистенции
- * @param <PK> тип первичного ключа
+ * @param <T>  persistence object type
+ * @param <PK> primary key type
  */
 public interface BaseDao<T extends Identified<PK>, PK extends Serializable> {
 
     /**
-     * Создает новую запись и соответствующий ей объект
+     * Creates a new record and its corresponding object
      */
     void create(T object) throws PersistException;
 
     /**
-     * Сохраняет состояние объекта в базе данных
+     * Stores the state of an object in the database
      */
     void update(PK key, String stringField) throws PersistException;
 
     /**
-     * Удаляет запись об объекте из базы данных
+     * Removes an object record from the database
      */
     void delete(PK key) throws PersistException;
 
     /**
-     * Возвращает список объектов соответствующих всем записям в базе данных
+     * Returns a list of objects matching all records in the database
      */
     List<T> getAll() throws PersistException;
 
     /**
-     * Возвращает id объекта соответствующего его текстовому полю
+     * Returns the id of the object corresponding to its text field
      */
     public Integer getUserId(String stringField) throws PersistException;
 
     /**
-     * Проверяет есть ли переданный user в базе данных
+     * Checks if the passed user is in the database
      */
     Boolean isAuthorizeLogin(User user) throws PersistException;
 }

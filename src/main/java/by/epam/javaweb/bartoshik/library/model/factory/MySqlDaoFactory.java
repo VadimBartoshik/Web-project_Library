@@ -17,10 +17,6 @@ import java.util.Map;
 import java.util.Properties;
 
 public class MySqlDaoFactory implements DaoFactory<Connection> {
-    private final String USER = "root";
-    private final String PASSWORD = "dflbv181818";
-    private final String URL = "jdbc:mysql://localhost:3306/library?serverTimezone=Europe/Moscow&useSSL=false";
-    private final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private Map<Class, DaoCreator> creators;
 
     public Connection getContext() throws PersistException {
@@ -49,12 +45,6 @@ public class MySqlDaoFactory implements DaoFactory<Connection> {
     }
 
     public MySqlDaoFactory() {
-        try {
-            Class.forName(DRIVER);//Регистрируем драйвер
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
         creators = new HashMap<Class, DaoCreator>();
         creators.put(User.class, new DaoCreator<Connection>() {
             @Override

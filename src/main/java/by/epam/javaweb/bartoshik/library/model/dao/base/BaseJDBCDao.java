@@ -10,10 +10,10 @@ import java.sql.*;
 import java.util.List;
 
 /**
- * Абстрактный класс предоставляющий базовую реализацию CRUD операций с использованием JDBC.
+ * Abstract class providing basic implementation of CRUD operations using JDBC.
  *
- * @param <T>  тип объекта персистенции
- * @param <PK> тип первичного ключа
+ * @param <T>  persistence object type
+ * @param <PK> primary key type
  */
 public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> implements BaseDao<T, PK> {
     private static final String AUTHORIZE_LOGIN = "select * from user where email=? and password=?";
@@ -27,57 +27,52 @@ public abstract class BaseJDBCDao<T extends Identified<PK>, PK extends Integer> 
     }
 
     /**
-     * Возвращает sql запрос для получения всех записей.
+     * Returns a sql query to get all records.
      * <p/>
      * SELECT * FROM [Table]
      */
     public abstract String getSelectQuery();
 
     /**
-     * Возвращает sql запрос для вставки новой записи в базу данных.
+     * Returns a sql query to insert a new record into the database.
      * <p/>
      * INSERT INTO [Table] ([column, column, ...]) VALUES (?, ?, ...);
      */
     public abstract String getCreateQuery();
 
     /**
-     * Возвращает sql запрос для обновления записи.
+     * Returns a sql query to update a record.
      * <p/>
      * UPDATE [Table] SET [column = ?, column = ?, ...] WHERE id = ?;
      */
     public abstract String getUpdateQuery();
 
     /**
-     * Возвращает sql запрос для проверки авторизации из базы данных.
+     * Returns a sql query to check authorization from the database.
      * <p/>
      * DELETE FROM [Table] WHERE id= ?;
      */
     public abstract String getDeleteQuery();
 
     /**
-     * Разбирает ResultSet и возвращает список объектов соответствующих содержимому ResultSet.
+     * Parses the ResultSet and returns a list of objects matching the contents of the ResultSet.
      */
     protected abstract List<T> parseResultSet(ResultSet rs) throws PersistException;
 
     /**
-     * Устанавливает аргументы insert запроса в соответствии со значением полей объекта object.
+     * Sets the insert arguments of the query to match the field values of the object.
      */
     protected abstract void prepareStatementForInsert(PreparedStatement statement, T object) throws PersistException;
 
     /**
-     * Устанавливает аргументы update запроса в соответствии со значением полей key and secondKey.
+     * Sets the update arguments of the request to match the values of the key and secondKey fields.
      */
     protected abstract void prepareStatementForUpdate(PreparedStatement statement, String key, PK secondKey) throws PersistException;
 
     /**
-     * Устанавливает аргументы delete запроса в соответствии со значением полей объекта key.
+     * Sets the delete arguments of the request to match the field values of the key object.
      */
     protected abstract void prepareStatementForDelete(PreparedStatement statement, PK key) throws PersistException;
-
-//    /**
-//     * Устанавливает аргументы AuthorizeLogin запроса в соответствии со значением полей email and password.
-//     */
-//    protected abstract void prepareStatementForAuthorizeLogin(PreparedStatement statement, String email, String password) throws PersistException;
 
 
     @Override
